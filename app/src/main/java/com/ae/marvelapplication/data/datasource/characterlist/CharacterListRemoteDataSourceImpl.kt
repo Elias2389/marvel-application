@@ -1,6 +1,6 @@
 package com.ae.marvelapplication.data.datasource.characterlist
 
-import com.ae.marvelappication.data.service.CharacterService
+import com.ae.marvelapplication.data.service.CharacterService
 import com.ae.marvelapplication.dto.dto.MarvelResponse
 import javax.inject.Inject
 import javax.inject.Singleton

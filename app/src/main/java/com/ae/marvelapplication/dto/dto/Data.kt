@@ -1,16 +1,16 @@
-package com.ae.marvelappication.dto
+package com.ae.marvelapplication.dto.dto
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class Data(
-    @SerializedName("total")
+    @Json(name = "total")
     val total: Int = 0,
-    @SerializedName("offset")
+    @Json(name = "offset")
     val offset: Int = 0,
-    @SerializedName("limit")
+    @Json(name = "limit")
     val limit: Int = 0,
-    @SerializedName("count")
+    @Json(name = "count")
     val count: Int = 0,
-    @SerializedName("results")
+    @Json(name = "results")
     val results: List<ResultsItem> = emptyList()
 )

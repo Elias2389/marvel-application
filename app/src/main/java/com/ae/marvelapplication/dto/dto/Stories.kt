@@ -1,17 +1,17 @@
-package com.ae.marvelappication.dto
+package com.ae.marvelapplication.dto.dto
 
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Stories(
-    @SerializedName("collectionURI")
+    @Json(name = "collectionURI")
     val collectionURI: String = "",
-    @SerializedName("available")
+    @Json(name = "available")
     val available: Int = 0,
-    @SerializedName("returned")
+    @Json(name = "returned")
     val returned: Int = 0,
-    @SerializedName("items")
+    @Json(name = "items")
     val items: List<ItemsItem> = emptyList()
-): Parcelable
+) : Parcelable

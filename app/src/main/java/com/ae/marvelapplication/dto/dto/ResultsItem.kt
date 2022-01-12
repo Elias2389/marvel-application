@@ -1,31 +1,31 @@
-package com.ae.marvelappication.dto
+package com.ae.marvelapplication.dto.dto
 
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ResultsItem(
-    @SerializedName("thumbnail")
+    @Json(name = "thumbnail")
     val thumbnail: Thumbnail = Thumbnail(),
-    @SerializedName("urls")
+    @Json(name = "urls")
     val urls: List<UrlsItem> = emptyList(),
-    @SerializedName("stories")
+    @Json(name = "stories")
     val stories: Stories = Stories(),
-    @SerializedName("series")
+    @Json(name = "series")
     val series: Series = Series(),
-    @SerializedName("comics")
+    @Json(name = "comics")
     val comics: Comics = Comics(),
-    @SerializedName("name")
+    @Json(name = "name")
     val name: String = "",
-    @SerializedName("description")
+    @Json(name = "description")
     val description: String = "",
-    @SerializedName("modified")
+    @Json(name = "modified")
     val modified: String = "",
-    @SerializedName("id")
+    @Json(name = "id")
     val id: Int = 0,
-    @SerializedName("resourceURI")
+    @Json(name = "resourceURI")
     val resourceURI: String = "",
-    @SerializedName("events")
+    @Json(name = "events")
     val events: Events = Events()
 ) : Parcelable
