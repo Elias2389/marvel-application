@@ -27,6 +27,7 @@ android {
                 includeNoLocationClasses = true
             }
         }
+        unitTests.returnDefaultValues = true
     }
 
     buildTypes {

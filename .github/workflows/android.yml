@@ -25,16 +25,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Build debug
-        run: bash ./gradlew build jacocoTestReport assembleAndroidTest
-      - name: run tests
-        uses: reactivecircus/android-emulator-runner@v1
-        with:
-          api-level: 29
-          script: ./gradlew connectedCheck
-      - name: Upload coverage to Codecov
-        run: |
-          curl -Os https://uploader.codecov.io/latest/macos/codecov
-          chmod +x codecov
-          ./codecov
+      - name: Codecov
+        uses: codecov/codecov-action@v2.1.0
+
 
