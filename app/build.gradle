@@ -11,6 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.ae.marvelapplication"
+        targetSdkVersion 31
         minSdk 21
         targetSdk 31
         versionCode 1
@@ -78,9 +79,11 @@ dependencies {
     implementation "com.squareup.okio:okio:$okio_version"
 
     // Moshi
+
     implementation("com.squareup.moshi:moshi:$moshi_version")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshi_version")
-    implementation("com.squareup.retrofit2:converter-moshi:$moshi_converter_version")
+    implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
+    kapt"com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    implementation"com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
 
     //Coil
     implementation"io.coil-kt:coil:$coil_version"
@@ -93,10 +96,6 @@ dependencies {
     // Timber logging
     implementation "com.jakewharton.timber:timber:$timber_version"
 
-    // Groupie
-    implementation "com.github.lisawray.groupie:groupie:$groupie_version"
-    implementation "com.github.lisawray.groupie:groupie-viewbinding:$groupie_version"
-
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_component_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_component_version"
@@ -108,6 +107,8 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$junit_test_impl_version"
     androidTestImplementation "androidx.test.ext:junit-ktx:$junit_ktx_version"
+
+    testImplementation "androidx.arch.core:core-testing:$arch_core_testing"
 
     // Room
     androidTestImplementation "androidx.room:room-testing:$room_version"
@@ -130,4 +131,7 @@ dependencies {
 
     // Fragment
     debugImplementation "androidx.fragment:fragment-testing:$fragment_ktx_version"
+
+    // Rules
+    androidTestImplementation "androidx.test:rules:1.4.0"
 }

@@ -3,6 +3,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
     dependencies {
         apply from: "dependencies.gradle"
@@ -16,4 +17,12 @@ buildscript {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force 'org.xerial:sqlite-jdbc:3.34.0'
+        }
+    }
 }
