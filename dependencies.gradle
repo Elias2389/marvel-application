@@ -9,6 +9,7 @@ ext {
     dagger_version = '2.39.1'
     expresso_core_version = '3.4.0'
     fragment_ktx_version = '1.4.0'
+    jacoco_version = '0.8.4'
     junit_test_impl_version = '1.1.2'
     junit_version = '4.13.2'
     junit_ktx_version = '1.1.3'
