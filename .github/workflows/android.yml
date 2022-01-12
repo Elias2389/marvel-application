@@ -30,7 +30,7 @@ jobs:
         with:
           files: ./coverage1.xml,./coverage2.xml
           flags: unittests
-          ail_ci_if_error: true
+          fail_ci_if_error: true
           verbose: true
 
 
