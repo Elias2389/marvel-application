@@ -27,7 +27,6 @@ android {
                 includeNoLocationClasses = true
             }
         }
-        unitTests.returnDefaultValues = true
     }
 
     buildTypes {
@@ -74,6 +73,11 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
             "jacoco/testDebugUnitTest.exec",
             "outputs/code-coverage/connected/*coverage.ec"
     ]))
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
 }
 
 dependencies {
