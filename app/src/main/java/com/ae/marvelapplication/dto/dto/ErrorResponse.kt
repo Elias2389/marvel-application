@@ -1,10 +1,10 @@
-package com.ae.marvelappication.dto
+package com.ae.marvelapplication.dto.dto
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class ErrorResponse(
-    @SerializedName("code")
+    @Json(name = "code")
     val code: String = "",
-    @SerializedName("message")
+    @Json(name = "message")
     val message: String = ""
 )

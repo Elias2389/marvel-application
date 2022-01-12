@@ -1,11 +1,11 @@
 package com.ae.marvelapplication.utils
 
-import com.ae.marvelappication.dto.Comics
-import com.ae.marvelappication.dto.Events
-import com.ae.marvelappication.dto.ResultsItem
-import com.ae.marvelappication.dto.Series
-import com.ae.marvelappication.dto.Stories
-import com.ae.marvelappication.dto.Thumbnail
+import com.ae.marvelapplication.dto.dto.Comics
+import com.ae.marvelapplication.dto.dto.Events
+import com.ae.marvelapplication.dto.dto.ResultsItem
+import com.ae.marvelapplication.dto.dto.Series
+import com.ae.marvelapplication.dto.dto.Stories
+import com.ae.marvelapplication.dto.dto.Thumbnail
 
 val characterMock: ResultsItem = ResultsItem(
     id = 12334,

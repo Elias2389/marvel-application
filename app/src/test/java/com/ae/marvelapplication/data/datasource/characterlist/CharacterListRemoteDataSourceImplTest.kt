@@ -1,8 +1,8 @@
 package com.ae.marvelapplication.data.datasource.characterlist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelappication.data.service.CharacterService
-import com.ae.marvelappication.dto.Data
+import com.ae.marvelapplication.data.service.CharacterService
+import com.ae.marvelapplication.dto.dto.Data
 import com.ae.marvelapplication.dto.dto.MarvelResponse
 import com.ae.marvelapplication.utils.characterMock
 import io.mockk.MockKAnnotations
@@ -39,15 +39,19 @@ class CharacterListRemoteDataSourceImplTest {
         val mockOffset = 0
         val mockLimit = 10
         val expectResponse = MarvelResponse()
-            .copy(data = Data(
-                offset = mockOffset,
-                limit = mockLimit,
-                results = expectedList
-            ))
+            .copy(
+                data = Data(
+                    offset = mockOffset,
+                    limit = mockLimit,
+                    results = expectedList
+                )
+            )
 
-        coEvery { mockCService.getAllCharacters(mockOffset,mockLimit) } returns expectResponse
+        coEvery { mockCService.getAllCharacters(mockOffset, mockLimit) } returns expectResponse
 
-        Assert.assertEquals(expectedList,
-            mockRemoteDataSource.getAllCharacterListRemote(mockOffset,mockLimit).data.results)
+        Assert.assertEquals(
+            expectedList,
+            mockRemoteDataSource.getAllCharacterListRemote(mockOffset, mockLimit).data.results
+        )
     }
 }

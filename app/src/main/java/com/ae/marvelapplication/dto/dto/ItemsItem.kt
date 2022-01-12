@@ -1,13 +1,13 @@
-package com.ae.marvelappication.dto
+package com.ae.marvelapplication.dto.dto
 
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ItemsItem(
-    @SerializedName("name")
+    @Json(name = "name")
     val name: String = "",
-    @SerializedName("resourceURI")
+    @Json(name = "resourceURI")
     val resourceURI: String = ""
-): Parcelable
+) : Parcelable

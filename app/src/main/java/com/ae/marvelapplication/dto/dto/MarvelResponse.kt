@@ -1,21 +1,20 @@
 package com.ae.marvelapplication.dto.dto
 
-import com.ae.marvelappication.dto.Data
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class MarvelResponse(
-    @SerializedName("copyright")
+    @Json(name = "copyright")
     val copyright: String = "",
-    @SerializedName("code")
+    @Json(name = "code")
     val code: Int = 0,
-    @SerializedName("data")
+    @Json(name = "data")
     val data: Data = Data(),
-    @SerializedName("attributionHTML")
+    @Json(name = "attributionHTML")
     val attributionHTML: String = "",
-    @SerializedName("attributionText")
+    @Json(name = "attributionText")
     val attributionText: String = "",
-    @SerializedName("etag")
+    @Json(name = "etag")
     val etag: String = "",
-    @SerializedName("status")
+    @Json(name = "status")
     val status: String = ""
 )

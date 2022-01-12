@@ -1,4 +1,4 @@
-package com.ae.marvelappication.data.service
+package com.ae.marvelapplication.data.service
 
 import com.ae.marvelapplication.dto.dto.MarvelResponse
 import retrofit2.http.GET
