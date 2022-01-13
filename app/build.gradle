@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
+    id 'jacoco'
 }
 
 android {
@@ -18,6 +19,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+        unitTests.returnDefaultValues = true
     }
 
     buildTypes {
@@ -45,6 +55,55 @@ android {
     viewBinding {
         enabled = true
     }
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = [
+            '**/databinding/**/*.*',
+            '**/android/databinding/*Binding.*',
+            '**/BR.*',
+            '**/R.*',
+            '**/R$*.*',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*_MembersInjector.*',
+            '**/Dagger*Component.*',
+            '**/Dagger*Component$Builder.*',
+            '**/*Module_*Factory.*',
+            '**/*Fragment*.*',
+            '**/*Activity*.*',
+            '**/*Adapter*.*',
+            '**/*ViewPager*.*',
+            '**/*ViewHolder*.*',
+            '**/*Module*.*',
+            '**/AndroidTest*.*',
+            'android/**/*.*'
+    ]
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories.setFrom(files([mainSrc]))
+    classDirectories.setFrom(files([debugTree]))
+    executionData.setFrom(fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+    ]))
+}
+
+task getCoverage(type: Exec, dependsOn: 'jacocoTestReport') {
+    group = "Reporting"
+    commandLine "open", "$buildDir/reports/jacoco/codeCoverageReport/html/index.html"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
 }
 
 dependencies {
