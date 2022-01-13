@@ -25,12 +25,19 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Codecov
-        uses: codecov/codecov-action@v2.1.0
+      - name: Run unit tests
+        run: ./gradlew test
+
+      - name: Upload html test report
+        uses: actions/upload-artifact@v2
         with:
-          files: ./coverage1.xml,./coverage2.xml
-          flags: unittests
-          fail_ci_if_error: true
-          verbose: true
+          name: index.html
+          path: app/build/reports/tests/testDebugUnitTest/index.html
+
+      - name: Upload test report directory
+        uses: actions/upload-artifact@v2
+        with:
+          name: testDebugStuff
+          path: app/build/reports/tests/testDebugUnitTest/
 
 
