@@ -25,9 +25,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Android Emulator Runner
-        uses: ReactiveCircus/android-emulator-runner@v2.22.0
-
       - name: Codecov
         uses: codecov/codecov-action@v2.1.0
         with:
