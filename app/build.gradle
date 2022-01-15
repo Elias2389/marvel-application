@@ -148,12 +148,6 @@ dependencies {
     //Coil
     implementation"io.coil-kt:coil:$coil_version"
 
-    // Paging
-    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
-
-    // alternatively - without Android dependencies for tests
-    testImplementation "androidx.paging:paging-common-ktx:$paging_version"
-
     // Room
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
