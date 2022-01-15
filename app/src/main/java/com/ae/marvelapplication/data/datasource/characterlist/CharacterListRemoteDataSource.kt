@@ -1,9 +1,6 @@
 package com.ae.marvelapplication.data.datasource.characterlist
 
-import androidx.paging.PagingData
 import com.ae.marvelapplication.dto.dto.CharactersResponse
-import com.ae.marvelapplication.dto.dto.ResultsItem
-import kotlinx.coroutines.flow.Flow
 
 interface CharacterListRemoteDataSource {
 
