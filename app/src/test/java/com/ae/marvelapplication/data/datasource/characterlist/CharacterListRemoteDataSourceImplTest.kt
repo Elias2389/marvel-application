@@ -2,15 +2,28 @@ package com.ae.marvelapplication.data.datasource.characterlist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ae.marvelapplication.data.service.CharacterService
-import com.ae.marvelapplication.dto.dto.Data
-import com.ae.marvelapplication.dto.dto.MarvelResponse
-import com.ae.marvelapplication.utils.characterMock
+import com.ae.marvelapplication.dto.dto.CharactersResponse
+import com.ae.marvelapplication.util.JsonReaderUtil
+import com.ae.marvelapplication.util.JsonToCharacterResponse
+import com.ae.marvelapplication.util.mockLimit
+import com.ae.marvelapplication.util.mockOffset
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import java.net.HttpURLConnection
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Assert
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.MockWebServer
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers
+import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.not
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -22,36 +35,84 @@ class CharacterListRemoteDataSourceImplTest {
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
-    @MockK(relaxed = true)
-    lateinit var mockCService: CharacterService
+    @ExperimentalCoroutinesApi
+    val testCoroutineDispatcher = TestCoroutineDispatcher()
 
-    lateinit var mockRemoteDataSource: CharacterListRemoteDataSource
+    @MockK(relaxed = true)
+    private lateinit var characterService: CharacterService
+
+    private lateinit var mockRemoteDataSource: CharacterListRemoteDataSource
+    private lateinit var mockWebServer: MockWebServer
+    private lateinit var mockServerResponseSuccess: String
+    private lateinit var mockServerResponseFail: String
 
     @Before
     fun setup() {
+        Dispatchers.setMain(testCoroutineDispatcher)
         MockKAnnotations.init(this)
-        mockRemoteDataSource = CharacterListRemoteDataSourceImpl(mockCService)
+        mockRemoteDataSource = CharacterListRemoteDataSourceImpl(characterService)
+        mockServerResponseSuccess =
+            JsonReaderUtil.readJsonFromFile("characters_response_success.json")
+        mockServerResponseFail = JsonReaderUtil.readJsonFromFile("characters_response_fail.json")
+        mockWebServer = MockWebServer()
+        mockWebServer.start()
     }
 
     @Test
-    fun `Get All characters from API should be success`() = runBlockingTest {
-        val expectedList = arrayListOf(characterMock.copy(id = 1), characterMock.copy(id = 2))
-        val mockOffset = 0
-        val mockLimit = 10
-        val expectResponse = MarvelResponse()
-            .copy(
-                data = Data(
-                    offset = mockOffset,
-                    limit = mockLimit,
-                    results = expectedList
-                )
-            )
+    fun `Get characters list from Server should be success`() {
+        val expectResponse = MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_OK)
+            .setBody(mockServerResponseSuccess)
 
-        coEvery { mockCService.getAllCharacters(mockOffset, mockLimit) } returns expectResponse
+        mockWebServer.enqueue(expectResponse)
 
-        Assert.assertEquals(
-            expectedList,
-            mockRemoteDataSource.getAllCharacterListRemote(mockOffset, mockLimit).data.results
-        )
+        val result = expectResponse.getBody()?.readUtf8()
+        assertThat(result, not(""))
+        assertThat(result, Matchers.containsString("\"results\""))
+        assertThat(result, Matchers.containsString("\"description\""))
+    }
+
+    @Test
+    fun `Get characters list from Server should be success and return character list`() =
+        runBlocking {
+            val expectResponse = MockResponse()
+                .setResponseCode(HttpURLConnection.HTTP_OK)
+                .setBody(mockServerResponseSuccess)
+
+            mockWebServer.enqueue(expectResponse)
+
+            val expectedCharacterResponse =
+                expectResponse.getBody()?.readUtf8()?.JsonToCharacterResponse()
+                    ?: CharactersResponse()
+
+            coEvery {
+                characterService.getAllCharacters(mockOffset, mockLimit)
+            } returns expectedCharacterResponse
+
+            val result = mockRemoteDataSource.getAllCharacterListByPageRemote(mockOffset, mockLimit)
+            val emptyCharacterResponse = CharactersResponse()
+            assertThat(result, `is`(expectedCharacterResponse))
+            assertThat(result, not(emptyCharacterResponse))
+        }
+
+    @Test
+    fun `Get characters list from Server should be fail`() {
+        val expectResponse = MockResponse()
+            .setResponseCode(HttpURLConnection.HTTP_CONFLICT)
+            .setBody(mockServerResponseFail)
+
+        mockWebServer.enqueue(expectResponse)
+
+        val result = expectResponse.getBody()?.readUtf8()
+        assertThat(result, not(""))
+        assertThat(result, Matchers.containsString("\"code\""))
+        assertThat(result, Matchers.containsString("\"status\""))
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+        testCoroutineDispatcher.cleanupTestCoroutines()
+        mockWebServer.shutdown()
     }
 }

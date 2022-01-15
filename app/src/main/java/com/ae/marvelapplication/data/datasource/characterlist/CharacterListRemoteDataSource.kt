@@ -1,6 +1,6 @@
 package com.ae.marvelapplication.data.datasource.characterlist
 
-import com.ae.marvelapplication.dto.dto.MarvelResponse
+import com.ae.marvelapplication.dto.dto.CharactersResponse
 
 interface CharacterListRemoteDataSource {
 
@@ -11,5 +11,5 @@ interface CharacterListRemoteDataSource {
      * @param limit Limit the result set
      * @return Response from Marvel's API
      */
-    suspend fun getAllCharacterListRemote(offset: Int, limit: Int): MarvelResponse
+    suspend fun getAllCharacterListByPageRemote(offset: Int, limit: Int): CharactersResponse
 }

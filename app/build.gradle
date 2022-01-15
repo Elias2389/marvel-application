@@ -9,7 +9,7 @@ plugins {
 
 android {
     compileSdk 31
-
+    resourcePrefix 'character_app'
     defaultConfig {
         applicationId "com.ae.marvelapplication"
         targetSdkVersion 31
@@ -128,6 +128,7 @@ dependencies {
 
     // Dagger
     implementation "com.google.dagger:hilt-android:$dagger_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:hilt-android-compiler:$dagger_version"
 
     // retrofit
@@ -160,6 +161,10 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_component_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
 
+    // Groupie
+    implementation "com.github.lisawray.groupie:groupie:$groupie_version"
+    implementation "com.github.lisawray.groupie:groupie-viewbinding:$groupie_version"
+
     // Testing //
 
     // Junit
@@ -168,6 +173,12 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit-ktx:$junit_ktx_version"
 
     testImplementation "androidx.arch.core:core-testing:$arch_core_testing"
+
+    // Hamcrest
+    testImplementation "org.hamcrest:hamcrest:$hamcrest_version"
+
+    // Mock Web Server
+    testImplementation"com.squareup.okhttp3:mockwebserver:$mock_web_server"
 
     // Room
     androidTestImplementation "androidx.room:room-testing:$room_version"
