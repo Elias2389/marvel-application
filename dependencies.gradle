@@ -11,7 +11,6 @@ ext {
     fragment_ktx_version = '1.4.0'
     groupie_version = '2.9.0'
     hamcrest_version = '2.2'
-    jacoco_version = '0.8.4'
     junit_test_impl_version = '1.1.2'
     junit_version = '4.13.2'
     junit_ktx_version = '1.1.3'
