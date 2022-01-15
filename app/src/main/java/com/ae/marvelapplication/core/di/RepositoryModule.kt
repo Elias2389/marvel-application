@@ -1,6 +1,6 @@
 package com.ae.marvelapplication.core.di
 
-import com.ae.marvelapplication.data.datasource.characterlist.CharacterListRemoteDataSource
+import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
 import com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepository
 import com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepositoryImpl
 import dagger.Module
@@ -16,7 +16,7 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideCharacterListRepository(
-        remote: CharacterListRemoteDataSource
+        remote: CharactersRemoteDataSource
     ): CharacterListRepository = CharacterListRepositoryImpl(remote)
 
 }

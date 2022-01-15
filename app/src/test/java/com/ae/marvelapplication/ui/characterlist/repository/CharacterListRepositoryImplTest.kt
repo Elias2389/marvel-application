@@ -1,7 +1,7 @@
 package com.ae.marvelapplication.ui.characterlist.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelapplication.data.datasource.characterlist.CharacterListRemoteDataSource
+import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.util.characterListMock
 import com.ae.marvelapplication.util.mockCharacterResponse
@@ -36,7 +36,7 @@ class CharacterListRepositoryImplTest {
     val testCoroutineDispatcher = TestCoroutineDispatcher()
 
     @MockK(relaxed = true)
-    private lateinit var remoteDataSource: CharacterListRemoteDataSource
+    private lateinit var remoteDataSource: CharactersRemoteDataSource
 
     private lateinit var mockRepository: CharacterListRepository
 

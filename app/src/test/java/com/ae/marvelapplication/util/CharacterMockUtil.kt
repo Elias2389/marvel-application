@@ -13,6 +13,7 @@ import com.squareup.moshi.Types
 
 const val mockOffset = 0
 const val mockLimit = 10
+const val mockCharacterId = 1011334
 
 val characterMock: ResultsItem = ResultsItem(
     id = 12334,
