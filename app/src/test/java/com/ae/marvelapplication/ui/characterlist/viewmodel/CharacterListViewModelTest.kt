@@ -2,20 +2,17 @@ package com.ae.marvelapplication.ui.characterlist.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import androidx.paging.cachedIn
 import com.ae.marvelappication.common.reponse.Resource
 import com.ae.marvelapplication.common.reponse.ResponseHandler
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.ui.characterlist.usecase.CharacterListUseCase
 import com.ae.marvelapplication.util.characterListMock
-
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
@@ -23,7 +20,6 @@ import kotlinx.coroutines.test.setMain
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.After
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
