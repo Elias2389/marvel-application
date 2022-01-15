@@ -1,8 +1,11 @@
 package com.ae.marvelapplication.dto.dto
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-data class MarvelResponse(
+
+@JsonClass(generateAdapter = true)
+data class CharactersResponse(
     @Json(name = "copyright")
     val copyright: String = "",
     @Json(name = "code")
