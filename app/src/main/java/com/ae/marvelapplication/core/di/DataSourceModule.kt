@@ -1,7 +1,7 @@
 package com.ae.marvelapplication.core.di
 
 import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
-import com.ae.marvelapplication.data.datasource.character.CharacterListRemoteDataSourceImpl
+import com.ae.marvelapplication.data.datasource.character.CharacterRemoteDataSourceImpl
 import com.ae.marvelapplication.data.service.CharacterService
 import dagger.Module
 import dagger.Provides
@@ -17,7 +17,8 @@ object DataSourceModule {
     @Provides
     fun provideCharacterListRemoteDataSource(
         characterService: CharacterService
-    ): CharactersRemoteDataSource = CharacterListRemoteDataSourceImpl(
+    ): CharactersRemoteDataSource = CharacterRemoteDataSourceImpl(
         characterService
     )
+
 }

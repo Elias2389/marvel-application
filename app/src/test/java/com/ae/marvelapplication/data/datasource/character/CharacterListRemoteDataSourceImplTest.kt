@@ -21,7 +21,6 @@ import kotlinx.coroutines.test.setMain
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.containsString
 import org.hamcrest.Matchers.not
@@ -54,7 +53,7 @@ class CharacterListRemoteDataSourceImplTest {
     fun setup() {
         Dispatchers.setMain(testCoroutineDispatcher)
         MockKAnnotations.init(this)
-        mockRemoteDataSource = CharacterListRemoteDataSourceImpl(characterService)
+        mockRemoteDataSource = CharacterRemoteDataSourceImpl(characterService)
         setupJsonFiles()
         mockWebServer = MockWebServer()
         mockWebServer.start()

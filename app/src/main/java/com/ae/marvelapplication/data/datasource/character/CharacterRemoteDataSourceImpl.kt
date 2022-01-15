@@ -6,7 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CharacterListRemoteDataSourceImpl @Inject constructor(
+class CharacterRemoteDataSourceImpl @Inject constructor(
     private val characterService: CharacterService
 ) : CharactersRemoteDataSource {
 
