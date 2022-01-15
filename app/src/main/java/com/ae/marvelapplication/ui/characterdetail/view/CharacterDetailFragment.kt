@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ae.marvelappication.common.reponse.Resource
 import com.ae.marvelapplication.R
 import com.ae.marvelapplication.common.reponse.Status
-import com.ae.marvelapplication.databinding.FragmentCharacterDetailBinding
+import com.ae.marvelapplication.databinding.CharacterAppFragmentCharacterDetailBinding
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.ui.characterdetail.viewmodel.CharacterDetailViewModel
 import com.xwray.groupie.GroupieAdapter
@@ -23,8 +23,8 @@ import timber.log.Timber
 
 class CharacterDetailFragment : Fragment() {
 
-    private val binding: FragmentCharacterDetailBinding by lazy {
-        FragmentCharacterDetailBinding.inflate(layoutInflater)
+    private val binding: CharacterAppFragmentCharacterDetailBinding by lazy {
+        CharacterAppFragmentCharacterDetailBinding.inflate(layoutInflater)
     }
 
 
