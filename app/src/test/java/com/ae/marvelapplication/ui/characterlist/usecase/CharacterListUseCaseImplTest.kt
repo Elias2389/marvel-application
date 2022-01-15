@@ -2,7 +2,7 @@ package com.ae.marvelapplication.ui.characterlist.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepository
-import com.ae.marvelapplication.util.characterListMock
+import com.ae.marvelapplication.util.mockCharacterList
 import com.ae.marvelapplication.util.mockLimit
 import com.ae.marvelapplication.util.mockOffset
 import io.mockk.MockKAnnotations
@@ -45,7 +45,7 @@ class CharacterListUseCaseImplTest {
 
     @Test
     fun `Get character list should be success`() = runBlockingTest {
-        val expectedList = characterListMock
+        val expectedList = mockCharacterList
 
         coEvery { mockRepository.getAllCharacters(mockOffset, mockLimit) } returns expectedList
 

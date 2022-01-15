@@ -9,13 +9,12 @@ import com.ae.marvelapplication.dto.dto.Series
 import com.ae.marvelapplication.dto.dto.Stories
 import com.ae.marvelapplication.dto.dto.Thumbnail
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 
 const val mockOffset = 0
 const val mockLimit = 10
 const val mockCharacterId = 1011334
 
-val characterMock: ResultsItem = ResultsItem(
+val mockCharacter: ResultsItem = ResultsItem(
     id = 12334,
     thumbnail = Thumbnail(),
     comics = Comics(),
@@ -25,9 +24,13 @@ val characterMock: ResultsItem = ResultsItem(
     urls = emptyList()
 )
 
-val characterListMock = listOf(
-    characterMock.copy(id = 1),
-    characterMock.copy(id = 2)
+val mockCharacterList = listOf(
+    mockCharacter.copy(id = 1),
+    mockCharacter.copy(id = 2)
+)
+
+val mockCharacterDetail = listOf(
+    mockCharacter.copy(id = 1)
 )
 
 val mockCharacterResponse = CharactersResponse()
@@ -35,7 +38,14 @@ val mockCharacterResponse = CharactersResponse()
         data = Data(
             offset = mockOffset,
             limit = mockLimit,
-            results = characterListMock
+            results = mockCharacterList
+        )
+    )
+
+val mockCharacterDetailResponse = CharactersResponse()
+    .copy(
+        data = Data(
+            results = mockCharacterDetail
         )
     )
 
