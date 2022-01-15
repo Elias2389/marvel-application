@@ -8,9 +8,9 @@
         android:name=".core.base.App"
         android:allowBackup="true"
         android:usesCleartextTraffic="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/character_app_ic_launcher"
         android:label="@string/character_app_app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/character_app_ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/character_app_Theme.MarvelApplication">
         <activity
