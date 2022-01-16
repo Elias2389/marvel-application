@@ -25,8 +25,4 @@ class CharacterDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ) = binding.root
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
 }
