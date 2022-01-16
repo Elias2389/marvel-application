@@ -1,5 +1,7 @@
 package com.ae.marvelapplication.core.di
 
+import com.ae.marvelapplication.common.connectionchecker.CheckConnection
+import com.ae.marvelapplication.common.connectionchecker.CheckConnectionImpl
 import com.ae.marvelapplication.data.service.CharacterService
 import dagger.Module
 import dagger.Provides
@@ -16,5 +18,9 @@ object ServiceModule {
     @Provides
     fun provideCharacterService(retrofit: Retrofit): CharacterService =
         retrofit.create(CharacterService::class.java)
+
+
+    @Provides
+    fun provideCheckConnection(): CheckConnection = CheckConnectionImpl()
 
 }

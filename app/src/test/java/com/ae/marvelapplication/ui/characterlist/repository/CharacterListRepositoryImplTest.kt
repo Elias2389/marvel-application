@@ -1,9 +1,10 @@
 package com.ae.marvelapplication.ui.characterlist.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelapplication.data.datasource.characterlist.CharacterListRemoteDataSource
+import com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSource
+import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
 import com.ae.marvelapplication.dto.dto.ResultsItem
-import com.ae.marvelapplication.util.characterListMock
+import com.ae.marvelapplication.util.mockCharacterList
 import com.ae.marvelapplication.util.mockCharacterResponse
 import com.ae.marvelapplication.util.mockCharacterResponseEmptyList
 import com.ae.marvelapplication.util.mockLimit
@@ -36,7 +37,10 @@ class CharacterListRepositoryImplTest {
     val testCoroutineDispatcher = TestCoroutineDispatcher()
 
     @MockK(relaxed = true)
-    private lateinit var remoteDataSource: CharacterListRemoteDataSource
+    private lateinit var remoteDataSource: CharactersRemoteDataSource
+
+    @MockK(relaxed = true)
+    private lateinit var localDataSource: CharacterLocalDataSource
 
     private lateinit var mockRepository: CharacterListRepository
 
@@ -44,13 +48,13 @@ class CharacterListRepositoryImplTest {
     fun setup() {
         Dispatchers.setMain(testCoroutineDispatcher)
         MockKAnnotations.init(this)
-        mockRepository = CharacterListRepositoryImpl(remoteDataSource)
+        mockRepository = CharacterListRepositoryImpl(remoteDataSource, localDataSource)
     }
 
     @Test
     fun `Get characters list from RemoteDataSource should be success and return character list`() =
         runBlocking {
-            val expectedList = characterListMock
+            val expectedList = mockCharacterList
             val expectedCharacterResponse = mockCharacterResponse
 
             coEvery {

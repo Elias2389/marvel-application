@@ -6,7 +6,7 @@ import com.ae.marvelappication.common.reponse.Resource
 import com.ae.marvelapplication.common.reponse.ResponseHandler
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.ui.characterlist.usecase.CharacterListUseCase
-import com.ae.marvelapplication.util.characterListMock
+import com.ae.marvelapplication.util.mockCharacterList
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -54,7 +54,7 @@ class CharacterListViewModelTest {
 
     @Test
     fun `Get character list should be success`() = runBlockingTest {
-        val expectedList = characterListMock
+        val expectedList = mockCharacterList
         val expectedResponse = mockResponseHandler.handleSuccess(expectedList)
 
         coEvery { mockUseCase.invoke(any(), any()) } returns expectedList
@@ -66,7 +66,7 @@ class CharacterListViewModelTest {
 
     @Test
     fun `Get character list should be success and return list`() = runBlockingTest {
-        val expectedList = characterListMock
+        val expectedList = mockCharacterList
         val expectedResponse = mockResponseHandler.handleSuccess(expectedList)
 
         coEvery { mockUseCase.invoke(any(), any()) } returns expectedList

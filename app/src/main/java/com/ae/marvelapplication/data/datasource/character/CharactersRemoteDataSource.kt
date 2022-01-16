@@ -1,8 +1,8 @@
-package com.ae.marvelapplication.data.datasource.characterlist
+package com.ae.marvelapplication.data.datasource.character
 
 import com.ae.marvelapplication.dto.dto.CharactersResponse
 
-interface CharacterListRemoteDataSource {
+interface CharactersRemoteDataSource {
 
     /**
      * Method to get all Characters with paged from remote service
@@ -12,4 +12,12 @@ interface CharacterListRemoteDataSource {
      * @return Response from Marvel's API
      */
     suspend fun getAllCharacterListByPageRemote(offset: Int, limit: Int): CharactersResponse
+
+    /**
+     * Method to get Character by id
+     *
+     * @param characterId id of character
+     * @return List of Characters
+     */
+    suspend fun getCharacterById(characterId: Int): CharactersResponse
 }

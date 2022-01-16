@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -112,7 +114,7 @@ class CharactersListFragment : Fragment(), SelectItemListener {
 
     private fun setListAdapter(response: List<ResultsItem>) {
         val list: List<CharacterItem> = response
-            .map { CharacterItem(requireContext(), it, this) }
+            .map { CharacterItem(it, this) }
         scrollingSection.apply { addAll(list) }
     }
 
@@ -127,5 +129,13 @@ class CharactersListFragment : Fragment(), SelectItemListener {
     }
 
     override fun goToDetail(character: ResultsItem) {
+        val bundle = bundleOf(CHARACTER_SELECTED to character)
+        NavHostFragment
+            .findNavController(this)
+            .navigate(R.id.navitage_to_character_appcharacterdetailfragment, bundle)
+    }
+
+    private companion object {
+        const val CHARACTER_SELECTED: String = "characterSelected"
     }
 }

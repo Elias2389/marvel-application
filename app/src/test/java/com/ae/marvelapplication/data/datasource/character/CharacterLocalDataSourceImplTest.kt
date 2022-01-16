@@ -1,12 +1,14 @@
-package com.ae.marvelapplication.ui.characterlist.usecase
+package com.ae.marvelapplication.data.datasource.character
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepository
+import com.ae.marvelapplication.data.dao.ResultItemDao
+import com.ae.marvelapplication.mapper.toResultsItemEntity
 import com.ae.marvelapplication.util.mockCharacterList
 import com.ae.marvelapplication.util.mockLimit
 import com.ae.marvelapplication.util.mockOffset
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,17 +16,19 @@ import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.containsString
 import org.hamcrest.Matchers.not
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 
 @ExperimentalCoroutinesApi
-class CharacterListUseCaseImplTest {
+class CharacterLocalDataSourceImplTest {
+
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
@@ -32,26 +36,31 @@ class CharacterListUseCaseImplTest {
     val testCoroutineDispatcher = TestCoroutineDispatcher()
 
     @MockK(relaxed = true)
-    private lateinit var mockRepository: CharacterListRepository
+    private lateinit var characterDao: ResultItemDao
 
-    private lateinit var useCase: CharacterListUseCase
+    private lateinit var mockCharacterLocalDataSource: CharacterLocalDataSource
 
     @Before
-    fun setUp() {
+    fun setup() {
         Dispatchers.setMain(testCoroutineDispatcher)
         MockKAnnotations.init(this)
-        useCase = CharacterListUseCaseImpl(mockRepository)
+        mockCharacterLocalDataSource = CharacterLocalDataSourceImpl(characterDao)
     }
 
     @Test
-    fun `Get character list should be success`() = runBlockingTest {
-        val expectedList = mockCharacterList
+    fun `Get characters list from DB should be success`() = runBlockingTest {
+        val expectList = mockCharacterList.toResultsItemEntity()
 
-        coEvery { mockRepository.getAllCharacters(mockOffset, mockLimit) } returns expectedList
+        coEvery {
+            characterDao.getAllCharacters(
+                mockOffset,
+                mockLimit
+            )
+        } returns expectList
 
-        val result = useCase.invoke(mockOffset, mockLimit)
-        assertThat(result, `is`(expectedList))
-        assertThat(result, not(emptyList()))
+        val result = mockCharacterLocalDataSource.getAllCharacterListLocal(mockOffset, mockLimit)
+        assertThat(expectList, `is`(result))
+        assertThat(expectList, not(emptyList()))
     }
 
     @After
