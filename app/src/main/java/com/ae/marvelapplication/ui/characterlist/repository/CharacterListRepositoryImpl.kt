@@ -1,5 +1,6 @@
 package com.ae.marvelapplication.ui.characterlist.repository
 
+import com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSource
 import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import javax.inject.Inject
@@ -9,7 +10,8 @@ import kotlinx.coroutines.withContext
 
 @Singleton
 class CharacterListRepositoryImpl @Inject constructor(
-    private val remoteDataSource: CharactersRemoteDataSource
+    private val remoteDataSource: CharactersRemoteDataSource,
+    private val local: CharacterLocalDataSource
 ) : CharacterListRepository {
 
     override suspend fun getAllCharacters(page: Int, limit: Int): List<ResultsItem> {

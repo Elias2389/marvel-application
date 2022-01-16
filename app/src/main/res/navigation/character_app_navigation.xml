@@ -10,8 +10,12 @@
         android:label="character_app_fragment_characters_list"
         tools:layout="@layout/character_app_fragment_characters_list" >
         <action
-            android:id="@+id/character_appAction_character_appcharacterslistfragment_to_character_appcharacterdetailfragment"
-            app:destination="@id/character_appCharacterdetailfragment" />
+            android:id="@+id/navitage_to_character_appcharacterdetailfragment"
+            app:destination="@id/character_appCharacterdetailfragment"
+            app:enterAnim="@anim/character_app_slide_in_right"
+            app:exitAnim="@anim/character_app_slide_out_left"
+            app:popEnterAnim="@anim/character_app_slide_in_left"
+            app:popExitAnim="@anim/character_app_slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/character_appCharacterdetailfragment"

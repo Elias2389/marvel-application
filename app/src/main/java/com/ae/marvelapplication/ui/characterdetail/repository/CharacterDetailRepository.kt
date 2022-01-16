@@ -12,4 +12,5 @@ interface CharacterDetailRepository {
      * @return List of Characters
      */
     suspend fun getCharacterById(characterId: Int): List<ResultsItem>
+
 }

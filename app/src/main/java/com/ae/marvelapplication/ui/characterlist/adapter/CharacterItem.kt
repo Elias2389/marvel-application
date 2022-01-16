@@ -11,7 +11,6 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 
 class CharacterItem(
-    private val context: Context,
     private val character: ResultsItem,
     private val listener: SelectItemListener
 ) : BindableItem<CharacterAppItemListBinding>() {
@@ -22,7 +21,7 @@ class CharacterItem(
 
     override fun bind(viewBinding: CharacterAppItemListBinding, position: Int) {
         viewBinding.title.text = character.name
-//        viewBinding.itemContainer.setOnClickListener { listener.goToDetail(character) }
+        viewBinding.itemViewCharacter.setOnClickListener { listener.goToDetail(character) }
         setImage(viewBinding)
     }
 

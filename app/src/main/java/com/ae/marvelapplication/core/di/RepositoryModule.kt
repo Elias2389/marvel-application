@@ -1,5 +1,6 @@
 package com.ae.marvelapplication.core.di
 
+import com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSource
 import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
 import com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepository
 import com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepositoryImpl
@@ -18,8 +19,9 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideCharacterListRepository(
-        remote: CharactersRemoteDataSource
-    ): CharacterListRepository = CharacterListRepositoryImpl(remote)
+        remote: CharactersRemoteDataSource,
+        local: CharacterLocalDataSource
+    ): CharacterListRepository = CharacterListRepositoryImpl(remote, local)
 
     @Provides
     fun provideCharacterDetailRepository(
