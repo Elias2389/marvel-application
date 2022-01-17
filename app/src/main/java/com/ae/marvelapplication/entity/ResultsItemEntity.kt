@@ -1,30 +1,32 @@
-package com.ae.marvelappication.data.entity
+package com.ae.marvelapplication.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.ae.marvelapplication.entity.ThumbnailEntity
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
-@Entity(tableName = "character")
+@Entity(tableName = "character", indices = [Index(value = ["id"], unique = true)])
 data class ResultsItemEntity(
-    @SerializedName("id_character")
+    @Json(name = "id_character")
     @PrimaryKey(autoGenerate = true)
     val idCharacter: Int = 0,
-    @SerializedName("id")
+    @Json(name ="id")
     @ColumnInfo(name = "id")
     val id: Int = 0,
-    @SerializedName("thumbnail")
+    @Json(name ="thumbnail")
     @Embedded
     val thumbnail: ThumbnailEntity = ThumbnailEntity(),
-    @SerializedName("name")
+    @Json(name ="name")
     @ColumnInfo(name = "name")
     val name: String = "",
-    @SerializedName("description")
+    @Json(name ="description")
     @ColumnInfo(name = "description")
     val description: String = "",
-    @SerializedName("created_at")
+    @Json(name ="created_at")
     @ColumnInfo(name = "created_at")
     var createAt: Long = System.currentTimeMillis()
 )

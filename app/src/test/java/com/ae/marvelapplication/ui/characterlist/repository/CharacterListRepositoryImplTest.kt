@@ -1,12 +1,13 @@
 package com.ae.marvelapplication.ui.characterlist.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.ae.marvelapplication.common.connectionchecker.CheckConnection
 import com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSource
 import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
-import com.ae.marvelapplication.dto.dto.ResultsItem
+import com.ae.marvelapplication.data.response.Resource
+import com.ae.marvelapplication.mapper.toResultsItemEntity
 import com.ae.marvelapplication.util.mockCharacterList
 import com.ae.marvelapplication.util.mockCharacterResponse
-import com.ae.marvelapplication.util.mockCharacterResponseEmptyList
 import com.ae.marvelapplication.util.mockLimit
 import com.ae.marvelapplication.util.mockOffset
 import io.mockk.MockKAnnotations
@@ -20,6 +21,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.instanceOf
 import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Before
@@ -42,45 +44,45 @@ class CharacterListRepositoryImplTest {
     @MockK(relaxed = true)
     private lateinit var localDataSource: CharacterLocalDataSource
 
+    @MockK(relaxed = true)
+    private lateinit var checkConnect: CheckConnection
+
     private lateinit var mockRepository: CharacterListRepository
 
     @Before
     fun setup() {
         Dispatchers.setMain(testCoroutineDispatcher)
         MockKAnnotations.init(this)
-        mockRepository = CharacterListRepositoryImpl(remoteDataSource, localDataSource)
+        mockRepository = CharacterListRepositoryImpl(remoteDataSource, localDataSource, checkConnect)
     }
 
     @Test
     fun `Get characters list from RemoteDataSource should be success and return character list`() =
         runBlocking {
+            val expectedListEntity = mockCharacterList.toResultsItemEntity()
             val expectedList = mockCharacterList
-            val expectedCharacterResponse = mockCharacterResponse
 
             coEvery {
-                remoteDataSource.getAllCharacterListByPageRemote(mockOffset, mockLimit)
-            } returns expectedCharacterResponse
+                localDataSource.getAllCharacterListLocal(mockOffset, mockLimit)
+            } returns expectedListEntity
 
-            val result = mockRepository.getAllCharacters(mockOffset, mockLimit)
-            assertThat(result, `is`(expectedList))
-            assertThat(result, not(emptyList()))
+            val result = mockRepository.getAllCharacters(mockOffset, mockLimit) as Resource.Success
+            assertThat(result.data, `is`(expectedList))
+            assertThat(result.data, not(emptyList()))
         }
 
     @Test
-    fun `Get characters list from RemoteDataSource should be error and return list empty`() =
+    fun `Get characters list from RemoteDataSource should be fail`() =
         runBlocking {
-            val expectedList = emptyList<ResultsItem>()
-            val expectedCharacterResponse = mockCharacterResponseEmptyList
+            val expectedException = Exception("")
 
             coEvery {
-                remoteDataSource.getAllCharacterListByPageRemote(mockOffset, mockLimit)
-            } returns expectedCharacterResponse
+                localDataSource.getAllCharacterListLocal(mockOffset, mockLimit)
+            } throws  expectedException
 
-            val result = mockRepository.getAllCharacters(mockOffset, mockLimit)
-
-            assertThat(result, `is`(expectedList))
+            val result = mockRepository.getAllCharacters(mockOffset, mockLimit) as Resource.Error
+            assertThat(result.exception, `is`(expectedException))
         }
-
 
     @After
     fun tearDown() {

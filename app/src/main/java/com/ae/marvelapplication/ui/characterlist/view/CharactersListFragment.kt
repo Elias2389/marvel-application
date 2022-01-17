@@ -13,19 +13,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ae.marvelapplication.common.listener.SelectItemListener
-import com.ae.marvelappication.common.reponse.Resource
 import com.ae.marvelapplication.ui.characterlist.adapter.CharacterItem
 import com.ae.marvelapplication.ui.characterlist.viewmodel.CharacterListViewModel
 import com.ae.marvelapplication.R
-import com.ae.marvelapplication.common.reponse.Status
-import com.ae.marvelapplication.common.resource.ResourceProvider
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.databinding.CharacterAppFragmentCharactersListBinding
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.utils.show
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Section
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CharactersListFragment : Fragment(), SelectItemListener {
@@ -33,9 +30,6 @@ class CharactersListFragment : Fragment(), SelectItemListener {
     private val binding: CharacterAppFragmentCharactersListBinding by lazy {
         CharacterAppFragmentCharactersListBinding.inflate(layoutInflater)
     }
-
-    @Inject
-    lateinit var resourceProvider: ResourceProvider
 
     private val viewModel: CharacterListViewModel by viewModels()
     private val scrollingSection: Section = Section()
@@ -59,7 +53,7 @@ class CharactersListFragment : Fragment(), SelectItemListener {
         binding.rvListItems.apply {
             adapter = groupAdapter
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(requireContext(), 3)
+            layoutManager = GridLayoutManager(requireContext(), SPAN_COUNT)
             addOnScrollListener(onScrollListener)
         }
     }
@@ -70,26 +64,22 @@ class CharactersListFragment : Fragment(), SelectItemListener {
     }
 
     private fun handlerResponse(result: Resource<List<ResultsItem>>) {
-        when (result.status) {
-            Status.SUCCESS -> {
+        when (result) {
+            is Resource.Success -> {
                 viewModel.isLoading = false
-                result.data?.let { response ->
+                result.data.let { response ->
                     if (response.isEmpty()) {
-                        showEmptyState(resourceProvider.getString(R.string.character_app_general_error))
+                        showEmptyState(getString(R.string.character_app_general_error))
                     } else {
                         showList()
                         setListAdapter(response)
                     }
                 }
             }
-            Status.ERROR -> {
-                result.message?.let {
-                    showEmptyState(it)
-                } ?: kotlin.run {
-                    showEmptyState(resourceProvider.getString(R.string.character_app_general_error))
-                }
+            is Resource.Error -> {
+                showEmptyState(getString(R.string.character_app_general_error))
             }
-            else -> showEmptyState(resourceProvider.getString(R.string.character_app_general_error))
+            else -> showEmptyState(getString(R.string.character_app_general_error))
         }
     }
 
@@ -137,5 +127,6 @@ class CharactersListFragment : Fragment(), SelectItemListener {
 
     private companion object {
         const val CHARACTER_SELECTED: String = "characterSelected"
+        const val SPAN_COUNT: Int = 3
     }
 }

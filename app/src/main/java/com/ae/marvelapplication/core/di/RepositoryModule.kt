@@ -1,5 +1,6 @@
 package com.ae.marvelapplication.core.di
 
+import com.ae.marvelapplication.common.connectionchecker.CheckConnection
 import com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSource
 import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
 import com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepository
@@ -20,9 +21,11 @@ object RepositoryModule {
     @Provides
     fun provideCharacterListRepository(
         remote: CharactersRemoteDataSource,
-        local: CharacterLocalDataSource
-    ): CharacterListRepository = CharacterListRepositoryImpl(remote, local)
+        local: CharacterLocalDataSource,
+        checkConnect: CheckConnection
+    ): CharacterListRepository = CharacterListRepositoryImpl(remote, local, checkConnect)
 
+    @Singleton
     @Provides
     fun provideCharacterDetailRepository(
         remote: CharactersRemoteDataSource

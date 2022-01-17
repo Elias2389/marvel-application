@@ -1,5 +1,6 @@
 package com.ae.marvelapplication.ui.characterlist.usecase
 
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 
 
@@ -12,5 +13,5 @@ interface CharacterListUseCase {
      * @param limit Limit the result set
      * @return List of Characters
      */
-    suspend fun invoke(offset: Int, limit: Int): List<ResultsItem>
+    suspend fun invoke(offset: Int, limit: Int): Resource<List<ResultsItem>>
 }

@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.ae.marvelappication.common.reponse.Resource
-import com.ae.marvelapplication.common.reponse.ResponseHandler
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.ui.characterdetail.usercase.CharacterDetailUserCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,8 +13,7 @@ import kotlinx.coroutines.Dispatchers
 
 @HiltViewModel
 class CharacterDetailViewModel @Inject constructor(
-    private val useCase: CharacterDetailUserCase,
-    private val responseHandler: ResponseHandler
+    private val useCase: CharacterDetailUserCase
 ) : ViewModel() {
 
     fun getCharacterById(
@@ -24,9 +22,9 @@ class CharacterDetailViewModel @Inject constructor(
         liveData(viewModelScope.coroutineContext + Dispatchers.Main) {
             try {
                 val response = useCase.invoke(characterId)
-                emit(responseHandler.handleSuccess(response))
+                emit(response)
             } catch (e: Exception) {
-                emit(responseHandler.handleException<List<ResultsItem>>(e))
+                emit(Resource.Error(e))
             }
         }
 }

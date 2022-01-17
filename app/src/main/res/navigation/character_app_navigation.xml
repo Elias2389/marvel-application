@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/marvel_navigation"
-    app:startDestination="@id/character_appCharacterslistfragment">
+    app:startDestination="@id/character_list_fragment">
     <fragment
-        android:id="@+id/character_appCharacterslistfragment"
+        android:id="@+id/character_list_fragment"
         android:name="com.ae.marvelapplication.ui.characterlist.view.CharactersListFragment"
         android:label="character_app_fragment_characters_list"
         tools:layout="@layout/character_app_fragment_characters_list" >
         <action
             android:id="@+id/navitage_to_character_appcharacterdetailfragment"
-            app:destination="@id/character_appCharacterdetailfragment"
+            app:destination="@id/character_detail_fragment"
             app:enterAnim="@anim/character_app_slide_in_right"
             app:exitAnim="@anim/character_app_slide_out_left"
             app:popEnterAnim="@anim/character_app_slide_in_left"
             app:popExitAnim="@anim/character_app_slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/character_appCharacterdetailfragment"
+        android:id="@+id/character_detail_fragment"
         android:name="com.ae.marvelapplication.ui.characterdetail.view.CharacterDetailFragment"
         android:label="character_app_fragment_character_detail"
         tools:layout="@layout/character_app_fragment_character_detail" />
