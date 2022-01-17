@@ -3,7 +3,6 @@ package com.ae.marvelapplication.ui.characterdetail.repository
 import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 
-
 interface CharacterDetailRepository {
 
     /**
@@ -13,5 +12,4 @@ interface CharacterDetailRepository {
      * @return List of Characters
      */
     suspend fun getCharacterById(characterId: Int): Resource<List<ResultsItem>>
-
 }

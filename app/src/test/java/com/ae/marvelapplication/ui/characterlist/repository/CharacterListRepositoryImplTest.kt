@@ -7,7 +7,6 @@ import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSo
 import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.mapper.toResultsItemEntity
 import com.ae.marvelapplication.util.mockCharacterList
-import com.ae.marvelapplication.util.mockCharacterResponse
 import com.ae.marvelapplication.util.mockLimit
 import com.ae.marvelapplication.util.mockOffset
 import io.mockk.MockKAnnotations
@@ -21,7 +20,6 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.instanceOf
 import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Before
@@ -78,7 +76,7 @@ class CharacterListRepositoryImplTest {
 
             coEvery {
                 localDataSource.getAllCharacterListLocal(mockOffset, mockLimit)
-            } throws  expectedException
+            } throws expectedException
 
             val result = mockRepository.getAllCharacters(mockOffset, mockLimit) as Resource.Error
             assertThat(result.exception, `is`(expectedException))

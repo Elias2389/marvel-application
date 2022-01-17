@@ -30,5 +30,4 @@ object RepositoryModule {
     fun provideCharacterDetailRepository(
         remote: CharactersRemoteDataSource
     ): CharacterDetailRepository = CharacterDetailRepositoryImpl(remote)
-
 }

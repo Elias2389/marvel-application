@@ -3,7 +3,6 @@ package com.ae.marvelapplication.ui.characterlist.usecase
 import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 
-
 interface CharacterListUseCase {
 
     /**

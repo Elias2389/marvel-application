@@ -1,13 +1,11 @@
 package com.ae.marvelapplication.data.datasource.character
 
-import com.ae.marvelapplication.entity.ResultsItemEntity
 import com.ae.marvelapplication.data.dao.ResultItemDao
-
+import com.ae.marvelapplication.entity.ResultsItemEntity
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-
 
 @Singleton
 class CharacterLocalDataSourceImpl @Inject constructor(

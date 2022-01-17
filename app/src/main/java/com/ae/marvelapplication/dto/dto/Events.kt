@@ -16,4 +16,4 @@ data class Events(
     val returned: Int = 0,
     @Json(name = "items")
     val items: List<ItemsItem> = emptyList()
-): Parcelable
+) : Parcelable

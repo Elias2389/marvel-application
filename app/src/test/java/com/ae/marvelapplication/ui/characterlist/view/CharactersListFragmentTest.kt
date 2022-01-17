@@ -9,14 +9,14 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ae.marvelapplication.R
 import com.ae.marvelapplication.util.launchFragmentInHiltContainer
+import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
-import org.junit.runner.RunWith
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
-import dagger.hilt.android.testing.HiltAndroidRule
-import org.junit.Before
 
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest

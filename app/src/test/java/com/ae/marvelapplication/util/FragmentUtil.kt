@@ -8,8 +8,8 @@ import androidx.core.util.Preconditions
 import androidx.fragment.app.Fragment
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
-import com.ae.marvelapplication.R
 import com.ae.marvelapplication.HiltTestActivity
+import com.ae.marvelapplication.R
 
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,

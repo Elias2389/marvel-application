@@ -1,8 +1,8 @@
 package com.ae.marvelapplication.ui.characterdetail.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.util.mockCharacterDetail
 import com.ae.marvelapplication.util.mockCharacterDetailResponse
 import com.ae.marvelapplication.util.mockCharacterId
@@ -67,7 +67,7 @@ class CharacterDetailRepositoryImplTest {
 
             coEvery {
                 remoteDataSource.getCharacterById(mockCharacterId)
-            } throws  expectedException
+            } throws expectedException
 
             val result = mockRepository.getCharacterById(mockCharacterId) as Resource.Error
             assertThat(result.exception, `is`(expectedException))

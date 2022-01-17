@@ -1,6 +1,5 @@
 package com.ae.marvelapplication.util
 
-
 import java.io.InputStreamReader
 
 object JsonReaderUtil {
@@ -11,6 +10,3 @@ object JsonReaderUtil {
         return jsonString
     }
 }
-
-
-

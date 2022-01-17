@@ -1,7 +1,7 @@
 package com.ae.marvelapplication.ui.characterdetail.repository
 
-import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import javax.inject.Inject
 import javax.inject.Singleton

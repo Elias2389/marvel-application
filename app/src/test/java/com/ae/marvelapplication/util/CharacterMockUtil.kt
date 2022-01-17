@@ -1,9 +1,9 @@
 package com.ae.marvelapplication.util
 
+import com.ae.marvelapplication.dto.dto.CharactersResponse
 import com.ae.marvelapplication.dto.dto.Comics
 import com.ae.marvelapplication.dto.dto.Data
 import com.ae.marvelapplication.dto.dto.Events
-import com.ae.marvelapplication.dto.dto.CharactersResponse
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.dto.dto.Series
 import com.ae.marvelapplication.dto.dto.Stories
