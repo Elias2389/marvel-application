@@ -55,6 +55,14 @@ android {
 
 }
 
+kapt {
+    arguments {
+        // Make Hilt share the same definition of Components in tests instead of
+        // creating a new set of Components per test class.
+        arg("dagger.hilt.shareTestComponents", "true")
+    }
+}
+
 dependencies {
 
     implementation "androidx.core:core-ktx:$coreKtxversion"
@@ -75,10 +83,11 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$ktx_life_cycle_version"
 
-    // Dagger
-    implementation "com.google.dagger:hilt-android:$dagger_version"
     implementation "androidx.test:runner:1.4.0"
     implementation "androidx.navigation:navigation-testing:$navigation_component_version"
+
+    // Dagger
+    implementation "com.google.dagger:hilt-android:$dagger_version"
     kapt "com.google.dagger:hilt-android-compiler:$dagger_version"
     kaptTest "com.google.dagger:hilt-android-compiler:$dagger_version"
 
@@ -126,6 +135,10 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$arch_core_testing"
 
     // Dagger Hilt
+    // For instrumentation tests
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$dagger_version"
+    androidTestAnnotationProcessor "com.google.dagger:hilt-compiler:$dagger_version"
+
     // For local unit tests
     testImplementation "com.google.dagger:hilt-android-testing:$dagger_version"
     testAnnotationProcessor "com.google.dagger:hilt-compiler:$dagger_version"
