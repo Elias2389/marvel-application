@@ -2,8 +2,6 @@ package com.ae.marvelapplication.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Index
-import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 
 @Entity(tableName = "thumbnail")

@@ -1,14 +1,12 @@
 package com.ae.marvelapplication.ui.characterlist.adapter
 
-import android.content.Context
 import android.view.View
 import coil.load
-import com.ae.marvelapplication.common.listener.SelectItemListener
 import com.ae.marvelapplication.R
+import com.ae.marvelapplication.common.listener.SelectItemListener
 import com.ae.marvelapplication.databinding.CharacterAppItemListBinding
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.xwray.groupie.viewbinding.BindableItem
-
 
 class CharacterItem(
     private val character: ResultsItem,

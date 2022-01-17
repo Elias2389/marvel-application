@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ChainWrapping:com.ae.marvelapplication.ui.characterlist.viewmodel.CharacterListViewModel.kt:44</ID>
+    <ID>ChainWrapping:com.ae.marvelapplication.ui.characterlist.viewmodel.CharacterListViewModel.kt:45</ID>
+    <ID>ChainWrapping:com.ae.marvelapplication.ui.characterlist.viewmodel.CharacterListViewModel.kt:67</ID>
+    <ID>ChainWrapping:com.ae.marvelapplication.ui.characterlist.viewmodel.CharacterListViewModel.kt:68</ID>
+    <ID>DataClassShouldBeImmutable:ResultsItemEntity.kt$ResultsItemEntity$@Json(name ="created_at") @ColumnInfo(name = "created_at") var createAt: Long = System.currentTimeMillis()</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ExampleInstrumentedTest.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ExampleUnitTest.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.MainActivity.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.common.connectionchecker.CheckConnectionImpl.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.core.di.DataSourceModule.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSourceImpl.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSourceImplTest.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.data.interceptor.ApiKeyInterceptor.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.mapper.MarvelMapper.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepositoryImpl.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepositoryImplTest.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ui.characterdetail.view.CharacterDetailFragment.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ui.characterdetail.viewmodel.CharacterDetailViewModelTest.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ui.characterlist.adapter.CharacterItem.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepositoryImpl.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ui.characterlist.view.CharactersListFragment.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ui.characterlist.view.CharactersListFragmentTest.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.ui.characterlist.viewmodel.CharacterListViewModel.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.util.CharacterMockUtil.kt:3</ID>
+    <ID>ImportOrdering:com.ae.marvelapplication.util.FragmentUtil.kt:3</ID>
+    <ID>Indentation:com.ae.marvelapplication.ui.characterlist.viewmodel.CharacterListViewModel.kt:67</ID>
+    <ID>Indentation:com.ae.marvelapplication.ui.characterlist.viewmodel.CharacterListViewModel.kt:68</ID>
+    <ID>NoBlankLineBeforeRbrace:com.ae.marvelapplication.MainActivity.kt:43</ID>
+    <ID>NoBlankLineBeforeRbrace:com.ae.marvelapplication.core.base.App.kt:21</ID>
+    <ID>NoBlankLineBeforeRbrace:com.ae.marvelapplication.core.di.ApiServiceModule.kt:83</ID>
+    <ID>NoBlankLineBeforeRbrace:com.ae.marvelapplication.core.di.RepositoryModule.kt:33</ID>
+    <ID>NoBlankLineBeforeRbrace:com.ae.marvelapplication.core.di.ServiceModule.kt:25</ID>
+    <ID>NoBlankLineBeforeRbrace:com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepository.kt:16</ID>
+    <ID>NoBlankLineBeforeRbrace:com.ae.marvelapplication.ui.characterdetail.view.CharacterDetailFragment.kt:26</ID>
+    <ID>NoBlankLineBeforeRbrace:com.ae.marvelapplication.ui.characterlist.viewmodel.CharacterListViewModel.kt:75</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.MainActivity.kt:12</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.core.di.ApiServiceModule.kt:3</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.core.di.ServiceModule.kt:22</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSourceImpl.kt:11</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.dto.dto.CharactersResponse.kt:6</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.mapper.MarvelMapper.kt:8</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepository.kt:6</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.ui.characterdetail.usercase.CharacterDetailUserCase.kt:6</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.ui.characterdetail.view.CharacterDetailFragment.kt:12</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.ui.characterdetail.viewmodel.CharacterDetailViewModelTest.kt:29</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.ui.characterlist.adapter.CharacterItem.kt:12</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.ui.characterlist.usecase.CharacterListUseCase.kt:6</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.util.JsonReaderUtil.kt:15</ID>
+    <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.util.JsonReaderUtil.kt:3</ID>
+    <ID>NoMultipleSpaces:com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepositoryImplTest.kt:70</ID>
+    <ID>NoMultipleSpaces:com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepositoryImplTest.kt:81</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.common.resource.ResourceProviderImpl.kt:4</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSourceImplTest.kt:8</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.data.datasource.character.CharacterRemoteDataSourceImpl.kt:5</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.entity.ResultsItemEntity.kt:8</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.entity.ResultsItemEntity.kt:9</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.entity.ThumbnailEntity.kt:5</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.entity.ThumbnailEntity.kt:6</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.ui.characterlist.adapter.CharacterItem.kt:3</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepositoryImplTest.kt:10</ID>
+    <ID>NoUnusedImports:com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepositoryImplTest.kt:24</ID>
+    <ID>NoWildcardImports:com.ae.marvelapplication.ExampleInstrumentedTest.kt:9</ID>
+    <ID>NoWildcardImports:com.ae.marvelapplication.ExampleUnitTest.kt:5</ID>
+    <ID>OptionalWhenBraces:CharactersListFragment.kt$CharactersListFragment$is Resource.Error -&gt; { showEmptyState(getString(R.string.character_app_general_error)) }</ID>
+    <ID>SpacingAroundColon:com.ae.marvelapplication.core.base.App.kt:9</ID>
+    <ID>SpacingAroundColon:com.ae.marvelapplication.dto.dto.Events.kt:19</ID>
+    <ID>SpacingAroundColon:com.ae.marvelapplication.ui.characterdetail.usercase.CharacterDetailUserCaseImpl.kt:12</ID>
+    <ID>SpacingAroundOperators:com.ae.marvelapplication.entity.ResultsItemEntity.kt:17</ID>
+    <ID>SpacingAroundOperators:com.ae.marvelapplication.entity.ResultsItemEntity.kt:20</ID>
+    <ID>SpacingAroundOperators:com.ae.marvelapplication.entity.ResultsItemEntity.kt:23</ID>
+    <ID>SpacingAroundOperators:com.ae.marvelapplication.entity.ResultsItemEntity.kt:26</ID>
+    <ID>SpacingAroundOperators:com.ae.marvelapplication.entity.ResultsItemEntity.kt:29</ID>
+    <ID>TooGenericExceptionCaught:CharacterDetailRepositoryImpl.kt$CharacterDetailRepositoryImpl$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:CharacterDetailViewModel.kt$CharacterDetailViewModel$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:CharacterListRepositoryImpl.kt$CharacterListRepositoryImpl$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:CharacterListViewModel.kt$CharacterListViewModel$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:CheckConnectionImpl.kt$CheckConnectionImpl$e: Exception</ID>
+    <ID>UnusedImports:CharacterItem.kt$import android.content.Context</ID>
+    <ID>UnusedImports:CharacterListRepositoryImplTest.kt$import com.ae.marvelapplication.util.mockCharacterResponse</ID>
+    <ID>UnusedImports:CharacterListRepositoryImplTest.kt$import org.hamcrest.Matchers.instanceOf</ID>
+    <ID>UnusedImports:CharacterLocalDataSourceImplTest.kt$import com.ae.marvelapplication.data.response.Resource</ID>
+    <ID>UnusedImports:CharacterRemoteDataSourceImpl.kt$import com.ae.marvelapplication.dto.dto.ResultsItem</ID>
+    <ID>UnusedImports:ResourceProviderImpl.kt$import com.ae.marvelapplication.common.resource.ResourceProvider</ID>
+    <ID>UnusedImports:ResultsItemEntity.kt$import com.ae.marvelapplication.entity.ThumbnailEntity</ID>
+    <ID>UnusedImports:ResultsItemEntity.kt$import com.google.gson.annotations.SerializedName</ID>
+    <ID>UnusedImports:ThumbnailEntity.kt$import androidx.room.Index</ID>
+    <ID>UnusedImports:ThumbnailEntity.kt$import com.google.gson.annotations.SerializedName</ID>
+    <ID>UnusedPrivateMember:CharacterDetailFragment.kt$CharacterDetailFragment$private val viewModel: CharacterDetailViewModel by viewModels()</ID>
+    <ID>UnusedPrivateMember:CharactersListFragment.kt$CharactersListFragment$message: String</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -1,10 +1,9 @@
 package com.ae.marvelapplication.mapper
 
-import com.ae.marvelapplication.entity.ResultsItemEntity
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.dto.dto.Thumbnail
+import com.ae.marvelapplication.entity.ResultsItemEntity
 import com.ae.marvelapplication.entity.ThumbnailEntity
-
 
 /**
  * Mapper to convert from

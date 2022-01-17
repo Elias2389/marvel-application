@@ -2,7 +2,6 @@ package com.ae.marvelapplication.data.datasource.character
 
 import com.ae.marvelapplication.data.service.CharacterService
 import com.ae.marvelapplication.dto.dto.CharactersResponse
-import com.ae.marvelapplication.dto.dto.ResultsItem
 import javax.inject.Inject
 import javax.inject.Singleton
 

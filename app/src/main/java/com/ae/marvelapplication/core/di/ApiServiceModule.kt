@@ -1,6 +1,5 @@
 package com.ae.marvelapplication.core.di
 
-
 import com.ae.marvelapplication.BuildConfig
 import com.ae.marvelapplication.data.interceptor.ApiKeyInterceptor
 import com.squareup.moshi.Moshi
@@ -80,5 +79,4 @@ object ApiServiceModule {
         .client(httpClient)
         .baseUrl(BuildConfig.BASE_URL)
         .build()
-
 }

@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Singleton
 class CharacterDetailUserCaseImpl @Inject constructor(
     private val repository: CharacterDetailRepository
-): CharacterDetailUserCase {
+) : CharacterDetailUserCase {
 
     override suspend fun invoke(characterId: Int): Resource<List<ResultsItem>> {
         return repository.getCharacterById(characterId)

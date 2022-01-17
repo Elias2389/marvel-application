@@ -1,9 +1,9 @@
 package com.ae.marvelapplication.ui.characterlist.repository
 
 import com.ae.marvelapplication.common.connectionchecker.CheckConnection
-import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSource
 import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.mapper.toEntity
 import com.ae.marvelapplication.mapper.toResultsItem
@@ -25,6 +25,9 @@ class CharacterListRepositoryImpl @Inject constructor(
     ): Resource<List<ResultsItem>> = withContext(Dispatchers.IO) {
         return@withContext try {
             if (checkConnect.connectionIsAvailable()) {
+                if (page == 0) {
+                    local.deleteAllCharacters()
+                }
                 remoteDataSource.getAllCharacterListByPageRemote(
                     page,
                     limit

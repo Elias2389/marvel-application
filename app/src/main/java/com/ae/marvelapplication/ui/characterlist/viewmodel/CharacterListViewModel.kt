@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ae.marvelapplication.data.response.Resource
-import com.ae.marvelapplication.ui.characterlist.usecase.CharacterListUseCase
 import com.ae.marvelapplication.dto.dto.ResultsItem
+import com.ae.marvelapplication.ui.characterlist.usecase.CharacterListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -40,9 +40,9 @@ class CharacterListViewModel @Inject constructor(
         firstVisibleItemPosition: Int,
         totalItemCount: Int
     ) {
-        if (isLoading
-            || isLastPage
-            || !isInFooter(visibleItemCount, firstVisibleItemPosition, totalItemCount)
+        if (isLoading ||
+            isLastPage ||
+            !isInFooter(visibleItemCount, firstVisibleItemPosition, totalItemCount)
         ) {
             return
         }
@@ -63,14 +63,13 @@ class CharacterListViewModel @Inject constructor(
         firstVisibleItemPosition: Int,
         totalItemCount: Int
     ): Boolean {
-        return visibleItemCount + firstVisibleItemPosition >= totalItemCount
-                && firstVisibleItemPosition >= INITIAL_VALUE
-                && totalItemCount >= PAGE_SIZE
+        return visibleItemCount + firstVisibleItemPosition >= totalItemCount &&
+            firstVisibleItemPosition >= INITIAL_VALUE &&
+            totalItemCount >= PAGE_SIZE
     }
 
     companion object {
         private const val PAGE_SIZE: Int = 14
         private const val INITIAL_VALUE: Int = 0
     }
-
 }

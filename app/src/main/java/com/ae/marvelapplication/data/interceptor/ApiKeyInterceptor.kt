@@ -3,11 +3,11 @@ package com.ae.marvelapplication.data.interceptor
 import com.ae.marvelapplication.BuildConfig
 import java.math.BigInteger
 import java.security.MessageDigest
+import javax.inject.Inject
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
-import javax.inject.Inject
 
 /**
  *  KEYS interceptor
