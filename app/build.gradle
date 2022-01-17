@@ -30,6 +30,7 @@ android {
             buildConfigField "String", "API_KEY", MARVEL_API_KEY
             buildConfigField "String", "PRIVATE_KEY", MARVEL_PRIVATE_KEY
             testCoverageEnabled true
+            minifyEnabled false
         }
         release {
             buildConfigField "String", "BASE_URL", BASE_URL
@@ -56,11 +57,7 @@ android {
 }
 
 kapt {
-    arguments {
-        // Make Hilt share the same definition of Components in tests instead of
-        // creating a new set of Components per test class.
-        arg("dagger.hilt.shareTestComponents", "true")
-    }
+    correctErrorTypes true
 }
 
 dependencies {
@@ -88,8 +85,7 @@ dependencies {
 
     // Dagger
     implementation "com.google.dagger:hilt-android:$dagger_version"
-    kapt "com.google.dagger:hilt-android-compiler:$dagger_version"
-    kaptTest "com.google.dagger:hilt-android-compiler:$dagger_version"
+    kapt "com.google.dagger:hilt-compiler:$dagger_version"
 
     // retrofit
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
@@ -137,11 +133,11 @@ dependencies {
     // Dagger Hilt
     // For instrumentation tests
     androidTestImplementation  "com.google.dagger:hilt-android-testing:$dagger_version"
-    androidTestAnnotationProcessor "com.google.dagger:hilt-compiler:$dagger_version"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$dagger_version"
 
     // For local unit tests
     testImplementation "com.google.dagger:hilt-android-testing:$dagger_version"
-    testAnnotationProcessor "com.google.dagger:hilt-compiler:$dagger_version"
+    kaptTest  "com.google.dagger:hilt-compiler:$dagger_version"
 
     // Hamcrest
     testImplementation "org.hamcrest:hamcrest:$hamcrest_version"
