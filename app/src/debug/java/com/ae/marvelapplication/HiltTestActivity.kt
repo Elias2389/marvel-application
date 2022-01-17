@@ -1,4 +1,3 @@
-
 package com.ae.marvelapplication
 
 import androidx.appcompat.app.AppCompatActivity

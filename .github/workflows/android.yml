@@ -22,11 +22,12 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew spotlessCheck assembleDebug test --stacktrace
 
       - name: Run unit tests
-        run: ./gradlew test
+        run: ./gradlew test --stacktrace
 
       - name: Upload html test report
         uses: actions/upload-artifact@v2
@@ -39,5 +40,3 @@ jobs:
         with:
           name: testDebugStuff
           path: app/build/reports/tests/testDebugUnitTest/
-
-
