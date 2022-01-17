@@ -17,7 +17,11 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.ae.marvelapplication.util.CustomTestRunner"
+    }
+
+    testOptions{
+        unitTests.includeAndroidResources = true
     }
 
     buildTypes {
@@ -26,6 +30,7 @@ android {
             buildConfigField "String", "API_KEY", MARVEL_API_KEY
             buildConfigField "String", "PRIVATE_KEY", MARVEL_PRIVATE_KEY
             testCoverageEnabled true
+            minifyEnabled false
         }
         release {
             buildConfigField "String", "BASE_URL", BASE_URL
@@ -45,13 +50,21 @@ android {
     viewBinding {
         enabled = true
     }
+    hilt {
+        enableTransformForLocalTests = true
+    }
+
+}
+
+kapt {
+    correctErrorTypes true
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation "androidx.core:core-ktx:$coreKtxversion"
+    implementation "androidx.appcompat:appcompat:$app_compact_version"
+    implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 
     // Android activity ktx
@@ -67,10 +80,12 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$ktx_life_cycle_version"
 
+    implementation "androidx.test:runner:1.4.0"
+    implementation "androidx.navigation:navigation-testing:$navigation_component_version"
+
     // Dagger
     implementation "com.google.dagger:hilt-android:$dagger_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt "com.google.dagger:hilt-android-compiler:$dagger_version"
+    kapt "com.google.dagger:hilt-compiler:$dagger_version"
 
     // retrofit
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
@@ -115,6 +130,15 @@ dependencies {
 
     testImplementation "androidx.arch.core:core-testing:$arch_core_testing"
 
+    // Dagger Hilt
+    // For instrumentation tests
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$dagger_version"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$dagger_version"
+
+    // For local unit tests
+    testImplementation "com.google.dagger:hilt-android-testing:$dagger_version"
+    kaptTest  "com.google.dagger:hilt-compiler:$dagger_version"
+
     // Hamcrest
     testImplementation "org.hamcrest:hamcrest:$hamcrest_version"
 
@@ -124,12 +148,19 @@ dependencies {
     // Room
     androidTestImplementation "androidx.room:room-testing:$room_version"
 
+    // Roboelectric
+    testImplementation "org.robolectric:robolectric:$roboelectrict_version"
+
     testImplementation "androidx.test.ext:junit:$test_ext_version"
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
 
     // Espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:$expresso_core_version"
+    testImplementation "androidx.test.espresso:espresso-core:$expresso_core_version"
+    testImplementation "androidx.test.espresso:espresso-contrib:$expresso_core_version"
+    testImplementation "androidx.test.espresso:espresso-intents:$expresso_core_version"
+    testImplementation "com.google.truth:truth:$truth_version"
 
     // Coroutines
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"

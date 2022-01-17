@@ -1,6 +1,7 @@
 package com.ae.marvelapplication.ui.characterdetail.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
 import com.ae.marvelapplication.util.mockCharacterDetail
 import com.ae.marvelapplication.util.mockCharacterDetailResponse
@@ -54,9 +55,22 @@ class CharacterDetailRepositoryImplTest {
                 remoteDataSource.getCharacterById(mockCharacterId)
             } returns expectedCharacterResponse
 
-            val result = mockRepository.getCharacterById(mockCharacterId)
-            assertThat(result, `is`(expectedList))
-            assertThat(result, not(emptyList()))
+            val result = mockRepository.getCharacterById(mockCharacterId) as Resource.Success
+            assertThat(result.data, `is`(expectedList))
+            assertThat(result.data, not(emptyList()))
+        }
+
+    @Test
+    fun `Get characters detail from RemoteDataSource should be fail and return error`() =
+        runBlocking {
+            val expectedException = Exception("")
+
+            coEvery {
+                remoteDataSource.getCharacterById(mockCharacterId)
+            } throws  expectedException
+
+            val result = mockRepository.getCharacterById(mockCharacterId) as Resource.Error
+            assertThat(result.exception, `is`(expectedException))
         }
 
     @After

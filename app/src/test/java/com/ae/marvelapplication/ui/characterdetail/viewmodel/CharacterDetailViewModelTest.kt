@@ -2,8 +2,7 @@ package com.ae.marvelapplication.ui.characterdetail.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.ae.marvelappication.common.reponse.Resource
-import com.ae.marvelapplication.common.reponse.ResponseHandler
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.ui.characterdetail.usercase.CharacterDetailUserCase
 import com.ae.marvelapplication.util.getOrAwaitValue
@@ -41,9 +40,6 @@ class CharacterDetailViewModelTest {
     private lateinit var mockUseCase: CharacterDetailUserCase
 
     @MockK(relaxed = true)
-    private lateinit var mockResponseHandler: ResponseHandler
-
-    @MockK(relaxed = true)
     private lateinit var mockObserver: Observer<Resource<List<ResultsItem>>>
 
     private lateinit var viewModel: CharacterDetailViewModel
@@ -52,40 +48,37 @@ class CharacterDetailViewModelTest {
     fun setUp() {
         MockKAnnotations.init(this)
         Dispatchers.setMain(testCoroutineDispatcher)
-        viewModel = CharacterDetailViewModel(mockUseCase, mockResponseHandler)
+        viewModel = CharacterDetailViewModel(mockUseCase)
     }
 
     @Test
     fun `Get character detail should be success`() = runBlockingTest {
-        val charactersExpect = mockCharacterDetail
-        val expectedResponse = mockResponseHandler.handleSuccess(charactersExpect)
+        val charactersExpect = Resource.Success(mockCharacterDetail)
 
         coEvery { mockUseCase.invoke(mockCharacterId) } returns charactersExpect
 
         viewModel.getCharacterById(mockCharacterId).observeForever(mockObserver)
         viewModel.getCharacterById(mockCharacterId).getOrAwaitValue()
 
-        coVerify { mockObserver.onChanged(eq(expectedResponse)) }
+        coVerify { mockObserver.onChanged(eq(charactersExpect)) }
     }
 
     @Test
     fun `Get character detail should be success and return value`() = runBlockingTest {
-        val charactersExpect = mockCharacterDetail
-        val expectedResponse = mockResponseHandler.handleSuccess(charactersExpect)
+        val charactersExpect = Resource.Success(mockCharacterDetail)
 
         coEvery { mockUseCase.invoke(mockCharacterId) } returns charactersExpect
 
         viewModel.getCharacterById(mockCharacterId).observeForever(mockObserver)
-        val result = viewModel.getCharacterById(mockCharacterId).getOrAwaitValue()
+        val result = viewModel.getCharacterById(mockCharacterId).getOrAwaitValue() as Resource.Success
 
-        assertThat(expectedResponse, `is`(result))
+        assertThat(charactersExpect, `is`(result))
     }
 
     @Test
     fun `Get character detail should be fail`() = runBlockingTest {
         val expectedException = Exception("")
-        val expectedResponse =
-            mockResponseHandler.handleException<List<ResultsItem>>(expectedException)
+        val expectedResponse = Resource.Error(expectedException)
 
         coEvery { mockUseCase.invoke(mockCharacterId) } throws expectedException
 
@@ -98,8 +91,7 @@ class CharacterDetailViewModelTest {
     @Test
     fun `Get character detail should be fail and return error`() = runBlockingTest {
         val expectedException = Exception("")
-        val expectedResponse =
-            mockResponseHandler.handleException<List<ResultsItem>>(expectedException)
+        val expectedResponse = Resource.Error(expectedException)
 
         coEvery { mockUseCase.invoke(mockCharacterId) } throws expectedException
 

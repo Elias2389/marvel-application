@@ -1,6 +1,7 @@
 package com.ae.marvelapplication.ui.characterlist.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepository
 import com.ae.marvelapplication.util.mockCharacterList
 import com.ae.marvelapplication.util.mockLimit
@@ -45,13 +46,23 @@ class CharacterListUseCaseImplTest {
 
     @Test
     fun `Get character list should be success`() = runBlockingTest {
-        val expectedList = mockCharacterList
+        val expectedList = Resource.Success(mockCharacterList)
 
         coEvery { mockRepository.getAllCharacters(mockOffset, mockLimit) } returns expectedList
 
-        val result = useCase.invoke(mockOffset, mockLimit)
+        val result = useCase.invoke(mockOffset, mockLimit) as Resource.Success
         assertThat(result, `is`(expectedList))
-        assertThat(result, not(emptyList()))
+        assertThat(result.data, not(emptyList()))
+    }
+
+    @Test
+    fun `Get character list should be fail`() = runBlockingTest {
+        val expectedResponse = Resource.Error(Exception(""))
+
+        coEvery { mockRepository.getAllCharacters(mockOffset, mockLimit) } returns expectedResponse
+
+        val result = useCase.invoke(mockOffset, mockLimit) as Resource.Error
+        assertThat(result, `is`(expectedResponse))
     }
 
     @After

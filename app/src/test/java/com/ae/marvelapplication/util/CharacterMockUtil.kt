@@ -13,9 +13,11 @@ import com.squareup.moshi.Moshi
 const val mockOffset = 0
 const val mockLimit = 10
 const val mockCharacterId = 1011334
+const val mockName = "Test User"
 
 val mockCharacter: ResultsItem = ResultsItem(
     id = 12334,
+    name = mockName,
     thumbnail = Thumbnail(),
     comics = Comics(),
     series = Series(),

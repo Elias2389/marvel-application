@@ -2,8 +2,7 @@ package com.ae.marvelapplication.ui.characterlist.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.ae.marvelappication.common.reponse.Resource
-import com.ae.marvelapplication.common.reponse.ResponseHandler
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.ui.characterlist.usecase.CharacterListUseCase
 import com.ae.marvelapplication.util.mockCharacterList
@@ -38,9 +37,6 @@ class CharacterListViewModelTest {
     private lateinit var mockUseCase: CharacterListUseCase
 
     @MockK(relaxed = true)
-    private lateinit var mockResponseHandler: ResponseHandler
-
-    @MockK(relaxed = true)
     private lateinit var mockEventObserver: Observer<Resource<List<ResultsItem>>>
 
     private lateinit var viewModel: CharacterListViewModel
@@ -54,34 +50,31 @@ class CharacterListViewModelTest {
 
     @Test
     fun `Get character list should be success`() = runBlockingTest {
-        val expectedList = mockCharacterList
-        val expectedResponse = mockResponseHandler.handleSuccess(expectedList)
+        val expectedList = Resource.Success(mockCharacterList)
 
         coEvery { mockUseCase.invoke(any(), any()) } returns expectedList
 
         viewModel.getAllCharactersByPaging()
 
-        coVerify { mockEventObserver.onChanged(eq(expectedResponse)) }
+        coVerify { mockEventObserver.onChanged(eq(expectedList)) }
     }
 
     @Test
     fun `Get character list should be success and return list`() = runBlockingTest {
-        val expectedList = mockCharacterList
-        val expectedResponse = mockResponseHandler.handleSuccess(expectedList)
+        val expectedList = Resource.Success(mockCharacterList)
 
         coEvery { mockUseCase.invoke(any(), any()) } returns expectedList
 
         viewModel.getAllCharactersByPaging()
 
         val response = viewModel.getEvents.value
-        assertThat(expectedResponse, `is`(response))
+        assertThat(expectedList, `is`(response))
     }
 
     @Test
     fun `Get character list should be fail`() = runBlockingTest {
         val expectedException = Exception("")
-        val expectedResponse =
-            mockResponseHandler.handleException<List<ResultsItem>>(expectedException)
+        val expectedResponse = Resource.Error(expectedException)
 
         coEvery { mockUseCase.invoke(any(), any()) } throws expectedException
 
@@ -93,8 +86,7 @@ class CharacterListViewModelTest {
     @Test
     fun `Get character list should be fail and return error`() = runBlockingTest {
         val expectedException = Exception("")
-        val expectedResponse = mockResponseHandler
-            .handleException<List<ResultsItem>>(expectedException)
+        val expectedResponse = Resource.Error(expectedException)
 
         coEvery { mockUseCase.invoke(any(), any()) } throws expectedException
 
@@ -111,9 +103,7 @@ class CharacterListViewModelTest {
     }
 
     private fun setupViewModel() {
-        viewModel = CharacterListViewModel(
-            mockUseCase,
-            mockResponseHandler
-        ).apply { getEvents.observeForever(mockEventObserver) }
+        viewModel = CharacterListViewModel(mockUseCase)
+            .apply { getEvents.observeForever(mockEventObserver) }
     }
 }

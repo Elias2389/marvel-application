@@ -1,5 +1,6 @@
 package com.ae.marvelapplication.ui.characterdetail.repository
 
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.dto.dto.ResultsItem
 
 
@@ -11,6 +12,6 @@ interface CharacterDetailRepository {
      * @param characterId id of character
      * @return List of Characters
      */
-    suspend fun getCharacterById(characterId: Int): List<ResultsItem>
+    suspend fun getCharacterById(characterId: Int): Resource<List<ResultsItem>>
 
 }

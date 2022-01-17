@@ -1,8 +1,6 @@
 package com.ae.marvelapplication.core.di
 
 import android.content.Context
-import com.ae.marvelapplication.common.reponse.ResponseHandler
-import com.ae.marvelapplication.common.reponse.ResponseHandlerImpl
 import com.ae.marvelapplication.common.resource.ResourceProvider
 import com.ae.marvelapplication.common.resource.ResourceProviderImpl
 import dagger.Module
@@ -20,11 +18,5 @@ object ResourceModule {
     @Provides
     fun provideResourceProvider(@ApplicationContext context: Context): ResourceProvider {
         return ResourceProviderImpl(context)
-    }
-
-    @Singleton
-    @Provides
-    fun provideResponseHandler(resourceProvider: ResourceProvider): ResponseHandler {
-        return ResponseHandlerImpl(resourceProvider)
     }
 }

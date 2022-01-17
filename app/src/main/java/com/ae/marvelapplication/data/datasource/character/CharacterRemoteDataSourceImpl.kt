@@ -2,6 +2,7 @@ package com.ae.marvelapplication.data.datasource.character
 
 import com.ae.marvelapplication.data.service.CharacterService
 import com.ae.marvelapplication.dto.dto.CharactersResponse
+import com.ae.marvelapplication.dto.dto.ResultsItem
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,11 +14,9 @@ class CharacterRemoteDataSourceImpl @Inject constructor(
     override suspend fun getAllCharacterListByPageRemote(
         offset: Int,
         limit: Int
-    ): CharactersResponse {
-        return characterService.getAllCharacters(offset, limit)
-    }
+    ): CharactersResponse = characterService.getAllCharacters(offset, limit)
 
-    override suspend fun getCharacterById(characterId: Int): CharactersResponse {
-        return characterService.getCharacterById(characterId)
-    }
+    override suspend fun getCharacterById(
+        characterId: Int
+    ): CharactersResponse = characterService.getCharacterById(characterId)
 }

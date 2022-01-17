@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.ae.marvelappication.data.entity.ResultsItemEntity
+import com.ae.marvelapplication.entity.ResultsItemEntity
 
 @Dao
 interface ResultItemDao {
@@ -23,4 +23,19 @@ interface ResultItemDao {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacter(character: ResultsItemEntity)
+
+    /**
+     * Method to get all Characters with paged from local db
+     *
+     * @param id Item
+     * @return Response from DB
+     */
+    @Query("SELECT * FROM character WHERE idCharacter = :id")
+    suspend fun getCharacterListLocalById(id: Int): ResultsItemEntity
+
+    /**
+     * Delete all Characters.
+     */
+    @Query("DELETE FROM character")
+    suspend fun deleteAllCharacters()
 }

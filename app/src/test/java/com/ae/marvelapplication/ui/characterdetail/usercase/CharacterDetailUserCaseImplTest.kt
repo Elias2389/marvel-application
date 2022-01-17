@@ -1,11 +1,9 @@
 package com.ae.marvelapplication.ui.characterdetail.usercase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
+import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepository
-import com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepositoryImpl
 import com.ae.marvelapplication.util.mockCharacterDetail
-import com.ae.marvelapplication.util.mockCharacterDetailResponse
 import com.ae.marvelapplication.util.mockCharacterId
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -49,15 +47,28 @@ class CharacterDetailUserCaseImplTest {
     @Test
     fun `Get characters detail from Repository should be success and return character detail`() =
         runBlocking {
-            val expectedList = mockCharacterDetail
+            val expectedList = Resource.Success(mockCharacterDetail)
 
             coEvery {
                 mockRepository.getCharacterById(mockCharacterId)
             } returns expectedList
 
-            val result = mockCharacterDetailUserCase.invoke(mockCharacterId)
+            val result = mockCharacterDetailUserCase.invoke(mockCharacterId) as Resource.Success
             assertThat(result, `is`(expectedList))
-            assertThat(result, not(emptyList()))
+            assertThat(result.data, not(emptyList()))
+        }
+
+    @Test
+    fun `Get characters detail from Repository should be fail and return character detail`() =
+        runBlocking {
+            val expectedResponse = Resource.Error(Exception(""))
+
+            coEvery {
+                mockRepository.getCharacterById(mockCharacterId)
+            } returns expectedResponse
+
+            val result = mockCharacterDetailUserCase.invoke(mockCharacterId) as Resource.Error
+            assertThat(result, `is`(expectedResponse))
         }
 
     @After
