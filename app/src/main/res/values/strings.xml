@@ -1,6 +1,8 @@
 <resources>
     <string name="character_app_app_name">MarvelApplication</string>
-    <string name="character_app_general_error">Error</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="character_app_hello_blank_fragment">Hello blank fragment</string>
+    <string name="character_app_general_error">Ocurrió un error</string>
+
+    <string name="character_app_fragment_list_title">Listado de Personajes</string>
+    <string name="character_app_fragment_detail_title">Detalle de Personaje</string>
+
 </resources>
