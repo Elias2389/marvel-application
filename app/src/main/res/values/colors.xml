@@ -7,4 +7,8 @@
     <color name="character_app_teal_700">#FF018786</color>
     <color name="character_app_black">#FF000000</color>
     <color name="character_app_white">#FFFFFFFF</color>
+    <color name="character_app_blue_primary">#00BCD4</color>
+    <color name="character_app_blue_primary_dark">#0097A7</color>
+    <color name="character_app_blue_primary_accent">#607D8B</color>
+    <color name="character_app_gray">#F5F5F4</color>
 </resources>

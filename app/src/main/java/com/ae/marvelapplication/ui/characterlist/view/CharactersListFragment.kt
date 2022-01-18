@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ae.marvelapplication.R
+import com.ae.marvelapplication.common.base.BaseFragment
 import com.ae.marvelapplication.common.listener.SelectItemListener
 import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.databinding.CharacterAppFragmentCharactersListBinding
@@ -25,7 +25,7 @@ import com.xwray.groupie.Section
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CharactersListFragment : Fragment(), SelectItemListener {
+class CharactersListFragment : BaseFragment(), SelectItemListener {
 
     private val binding: CharacterAppFragmentCharactersListBinding by lazy {
         CharacterAppFragmentCharactersListBinding.inflate(layoutInflater)
@@ -42,8 +42,17 @@ class CharactersListFragment : Fragment(), SelectItemListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViews()
         setupAdapter()
         setupViewModel()
+    }
+
+    private fun setupViews() {
+        configureEmptyState(
+            binding.rvListItems,
+            binding.emptyStateCharacterListView,
+            R.drawable.general_error_image
+        )
     }
 
     private fun setupAdapter() {
@@ -63,7 +72,7 @@ class CharactersListFragment : Fragment(), SelectItemListener {
         viewModel.getAllCharactersByPaging()
     }
 
-    private fun handlerResponse(result: Resource<List<ResultsItem>>) {
+    fun handlerResponse(result: Resource<List<ResultsItem>>) {
         when (result) {
             is Resource.Success -> {
                 viewModel.isLoading = false
@@ -109,13 +118,14 @@ class CharactersListFragment : Fragment(), SelectItemListener {
     }
 
     private fun showList() {
-//        binding.emptyStateView.hideEmptyState()
+        setImageEmptyState(R.drawable.not_found_image)
+        hideEmptyState()
         binding.rvListItems.show()
     }
 
     private fun showEmptyState(message: String) {
-//        binding.emptyStateView.setMessage(message)
-//        binding.emptyStateView.showEmptyState()
+        setMessageEmptyState(message)
+        showEmptyState()
     }
 
     override fun goToDetail(character: ResultsItem) {
