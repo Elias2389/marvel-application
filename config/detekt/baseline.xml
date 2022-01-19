@@ -53,7 +53,6 @@
     <ID>NoConsecutiveBlankLines:com.ae.marvelapplication.util.JsonReaderUtil.kt:3</ID>
     <ID>NoMultipleSpaces:com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepositoryImplTest.kt:70</ID>
     <ID>NoMultipleSpaces:com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepositoryImplTest.kt:81</ID>
-    <ID>NoUnusedImports:com.ae.marvelapplication.common.resource.ResourceProviderImpl.kt:4</ID>
     <ID>NoUnusedImports:com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSourceImplTest.kt:8</ID>
     <ID>NoUnusedImports:com.ae.marvelapplication.data.datasource.character.CharacterRemoteDataSourceImpl.kt:5</ID>
     <ID>NoUnusedImports:com.ae.marvelapplication.entity.ResultsItemEntity.kt:8</ID>

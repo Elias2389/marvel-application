@@ -134,8 +134,7 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$ktx_life_cycle_version"
 
-    implementation "androidx.test:runner:1.4.0"
-    implementation "androidx.navigation:navigation-testing:$navigation_component_version"
+    implementation "androidx.test:runner:$test_runner_version"
 
     // Dagger
     implementation "com.google.dagger:hilt-android:$dagger_version"
@@ -155,7 +154,7 @@ dependencies {
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
     implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
 
-    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.16.0"
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
 
     //Coil
     implementation "io.coil-kt:coil:$coil_version"
@@ -167,11 +166,6 @@ dependencies {
 
     // Timber logging
     implementation "com.jakewharton.timber:timber:$timber_version"
-
-    // Navigation Component
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_component_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_component_version"
-    implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
 
     // Groupie
     implementation "com.github.lisawray.groupie:groupie:$groupie_version"
@@ -231,5 +225,5 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:$fragment_ktx_version"
 
     // Rules
-    androidTestImplementation "androidx.test:rules:1.4.0"
+    androidTestImplementation "androidx.test:rules:$test_rules_version"
 }

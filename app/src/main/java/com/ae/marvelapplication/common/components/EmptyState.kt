@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.annotation.IdRes
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.ae.marvelapplication.R
 import com.ae.marvelapplication.databinding.CharacterAppEmptyStateViewBinding
 import com.ae.marvelapplication.utils.hide
 import com.ae.marvelapplication.utils.show
@@ -54,17 +53,6 @@ class EmptyState : ConstraintLayout {
      * Method to show empty state
      */
     fun showEmptyState() {
-        binding.emptyStateLoading.hide()
-        binding.emptyStateTaskText.show()
-        binding.emptyStateTaskImage.show()
-    }
-
-    /**
-     * Method to show empty state when is http error
-     */
-    fun showEmptyStateErrorConnection() {
-        setMessage(resources.getString(R.string.character_app_general_error))
-//        setImage(R.drawable.error_connection_image)
         binding.emptyStateLoading.hide()
         binding.emptyStateTaskText.show()
         binding.emptyStateTaskImage.show()

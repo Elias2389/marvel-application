@@ -4,8 +4,6 @@ import com.ae.marvelapplication.data.dao.ResultItemDao
 import com.ae.marvelapplication.entity.ResultsItemEntity
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 @Singleton
 class CharacterLocalDataSourceImpl @Inject constructor(
@@ -23,9 +21,7 @@ class CharacterLocalDataSourceImpl @Inject constructor(
 
     override suspend fun saveCharacterLocal(
         character: ResultsItemEntity
-    ) = withContext(Dispatchers.IO) {
-        characterDao.insertCharacter(character)
-    }
+    ) = characterDao.insertCharacter(character)
 
     override suspend fun deleteAllCharacters() {
         characterDao.deleteAllCharacters()
