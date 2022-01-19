@@ -9,6 +9,7 @@ import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.ui.characterlist.usecase.CharacterListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -16,21 +17,25 @@ class CharacterListViewModel @Inject constructor(
     private val useCase: CharacterListUseCase
 ) : ViewModel() {
 
-    private var offset = INITIAL_VALUE
     private var limit = PAGE_SIZE
     private var isLastPage = false
-    var isLoading = false
     private var page = 0
+    var offset = INITIAL_VALUE
+    var isLoading = false
 
-    private val _events = MutableLiveData<Resource<List<ResultsItem>>>()
-    val getEvents: LiveData<Resource<List<ResultsItem>>> get() = _events
+    private val items = MutableLiveData<Resource<List<ResultsItem>>>()
+    fun getItems(): LiveData<Resource<List<ResultsItem>>> = items
+
+    init {
+        getAllCharactersByPaging()
+    }
 
     fun getAllCharactersByPaging() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             try {
-                _events.value = useCase.invoke(offset, limit)
+                items.value = useCase.invoke(offset, limit)
             } catch (e: Exception) {
-                _events.value = Resource.Error(e)
+                items.value = Resource.Error(e)
             }
         }
     }
@@ -69,7 +74,7 @@ class CharacterListViewModel @Inject constructor(
     }
 
     companion object {
-        private const val PAGE_SIZE: Int = 14
+        private const val PAGE_SIZE: Int = 15
         private const val INITIAL_VALUE: Int = 0
     }
 }

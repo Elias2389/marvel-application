@@ -1,5 +1,6 @@
 package com.ae.marvelapplication.core.di
 
+import androidx.lifecycle.SavedStateHandle
 import com.ae.marvelapplication.data.dao.ResultItemDao
 import com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSource
 import com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSourceImpl
@@ -29,4 +30,7 @@ object DataSourceModule {
     fun provideCharacterListLocalDataSource(
         characterDao: ResultItemDao
     ): CharacterLocalDataSource = CharacterLocalDataSourceImpl(characterDao)
+
+    @Provides
+    fun provideSavedStateHandle(): SavedStateHandle = SavedStateHandle()
 }

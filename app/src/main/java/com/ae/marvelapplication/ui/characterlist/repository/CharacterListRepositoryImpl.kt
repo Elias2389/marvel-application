@@ -20,23 +20,23 @@ class CharacterListRepositoryImpl @Inject constructor(
 ) : CharacterListRepository {
 
     override suspend fun getAllCharacters(
-        page: Int,
+        offset: Int,
         limit: Int
     ): Resource<List<ResultsItem>> = withContext(Dispatchers.IO) {
         return@withContext try {
             if (checkConnect.connectionIsAvailable()) {
-                if (page == 0) {
+                if (offset == 0) {
                     local.deleteAllCharacters()
                 }
                 remoteDataSource.getAllCharacterListByPageRemote(
-                    page,
+                    offset,
                     limit
                 ).data.results.map { item ->
                     local.saveCharacterLocal(item.toEntity())
                 }
-                Resource.Success(local.getAllCharacterListLocal(page, limit).toResultsItem())
+                Resource.Success(local.getAllCharacterListLocal(offset, limit).toResultsItem())
             } else {
-                Resource.Success(local.getAllCharacterListLocal(page, limit).toResultsItem())
+                Resource.Success(local.getAllCharacterListLocal(offset, limit).toResultsItem())
             }
         } catch (e: Exception) {
             Resource.Error(e)

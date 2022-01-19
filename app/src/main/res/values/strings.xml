@@ -4,5 +4,5 @@
 
     <string name="character_app_fragment_list_title">Listado de Personajes</string>
     <string name="character_app_fragment_detail_title">Detalle de Personaje</string>
-
+    <string name="character_app_fragment_comics_title">Comics</string>
 </resources>
