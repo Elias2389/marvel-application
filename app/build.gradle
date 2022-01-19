@@ -21,7 +21,7 @@ android {
         testInstrumentationRunner "com.ae.marvelapplication.util.CustomTestRunner"
     }
 
-    testOptions{
+    testOptions {
         unitTests.includeAndroidResources = true
     }
 
@@ -106,6 +106,12 @@ tasks.register("detektGenerateBaseline", io.gitlab.arturbosch.detekt.DetektCreat
 
 kapt {
     correctErrorTypes true
+    javacOptions {
+        // These options are normally set automatically via the Hilt Gradle plugin, but we
+        // set them manually to workaround a bug in the Kotlin 1.5.20
+        option("-Adagger.fastInit=ENABLED")
+        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+    }
 }
 
 dependencies {
@@ -146,13 +152,13 @@ dependencies {
 
     implementation("com.squareup.moshi:moshi:$moshi_version")
     implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
-    kapt"com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
-    implementation"com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
 
     detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.16.0"
 
     //Coil
-    implementation"io.coil-kt:coil:$coil_version"
+    implementation "io.coil-kt:coil:$coil_version"
 
     // Room
     implementation "androidx.room:room-runtime:$room_version"
@@ -182,18 +188,18 @@ dependencies {
 
     // Dagger Hilt
     // For instrumentation tests
-    androidTestImplementation  "com.google.dagger:hilt-android-testing:$dagger_version"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$dagger_version"
     kaptAndroidTest "com.google.dagger:hilt-compiler:$dagger_version"
 
     // For local unit tests
     testImplementation "com.google.dagger:hilt-android-testing:$dagger_version"
-    kaptTest  "com.google.dagger:hilt-compiler:$dagger_version"
+    kaptTest "com.google.dagger:hilt-compiler:$dagger_version"
 
     // Hamcrest
     testImplementation "org.hamcrest:hamcrest:$hamcrest_version"
 
     // Mock Web Server
-    testImplementation"com.squareup.okhttp3:mockwebserver:$mock_web_server"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mock_web_server"
 
     // Room
     androidTestImplementation "androidx.room:room-testing:$room_version"
