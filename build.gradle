@@ -19,12 +19,3 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-// Resolve error while compile mac m1
-allprojects {
-    configurations.all {
-        resolutionStrategy {
-            force 'org.xerial:sqlite-jdbc:3.34.0'
-        }
-    }
-}
