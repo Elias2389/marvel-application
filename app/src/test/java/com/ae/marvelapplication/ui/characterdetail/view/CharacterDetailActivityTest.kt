@@ -61,7 +61,7 @@ class CharacterDetailActivityTest {
     }
 
     @Test
-    fun `Show character list could be fail and show empty state`() {
+    fun `Show character detail could be fail and show empty state`() {
         val fakeErrorResponse = Resource.Error(Exception("Error"))
 
         activityRule.scenario.onActivity {
