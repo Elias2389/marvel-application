@@ -20,10 +20,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object ApiServiceModule {
     private const val TIME_TIMEOUT: Long = 30
 
-    /**
-     * Provide interceptor of http requests
-     * @return HttpLoggingInterceptor
-     */
     @Provides
     @Singleton
     fun provideNetworkInterceptor(): HttpLoggingInterceptor {
@@ -32,26 +28,14 @@ object ApiServiceModule {
         return interceptor
     }
 
-    /**
-     * Provide interceptor with APIS KEY and Hash
-     * @return Interceptor
-     */
     @Provides
     @Singleton
     fun provideInterceptor(): Interceptor = ApiKeyInterceptor()
 
-    /**
-     * Provide interceptor with APIS KEY and Hash
-     * @return Interceptor
-     */
     @Provides
     @Singleton
     fun provideMoshi(): Moshi = Moshi.Builder().build()
 
-    /**
-     * Provide Http client with behaviors
-     * @return OkHttpClient
-     */
     @Provides
     @Singleton
     fun provideOkHttpClient(
@@ -68,10 +52,6 @@ object ApiServiceModule {
         return httpBuilder.build()
     }
 
-    /**
-     * Create interface with retrofit generic class
-     * @return service to create
-     */
     @Provides
     @Singleton
     fun provideRetrofit(httpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()

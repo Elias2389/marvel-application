@@ -13,7 +13,7 @@ interface ResultItemDao {
      *
      * @return results
      */
-    @Query("SELECT * FROM character LIMIT :limit OFFSET :offset")
+    @Query("SELECT DISTINCT * FROM character ORDER BY name ASC LIMIT :limit OFFSET :offset")
     suspend fun getAllCharacters(offset: Int, limit: Int): List<ResultsItemEntity>
 
     /**

@@ -6,6 +6,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 /**
  * Class to check internet connection
@@ -21,7 +22,7 @@ class CheckConnectionImpl @Inject constructor() : CheckConnection {
             sock.close()
             true
         } catch (e: Exception) {
-            e.printStackTrace()
+            Timber.e(e)
             false
         }
     }

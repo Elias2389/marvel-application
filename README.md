@@ -26,7 +26,7 @@
 
 * Kotlin
 
-* Viewmodel
+* ViewModel
 
 * LiveData
 
@@ -48,6 +48,8 @@
 
 * Roboelectric
 
+* MockWebServer
+
 
 
 * * *
@@ -64,11 +66,27 @@ MVVM:
 **Presentation layer:** Views(Activities, Fragments) and ViewModels.
 
 
-
 **Domain layer:** Use cases.
 
 
-
 **Data layer:** Repositories.
+
+* * *
+
+### Error m1 processor and Room library
+If you have some error compiling this app in Apple Mac with m1 processor you can try add this in gradle:
+`allprojects {
+       configurations.all {
+           resolutionStrategy {
+               force 'org.xerial:sqlite-jdbc:3.34.0'
+           }
+       }
+   }`
+
+* * *
+
+### Run detekt rules and fix
+
+`./gradlew detektAll -PdetektAutoFix=true`
 
 

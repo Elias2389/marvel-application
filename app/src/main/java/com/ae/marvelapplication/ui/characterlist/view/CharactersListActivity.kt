@@ -64,6 +64,7 @@ class CharactersListActivity : BaseActivity(), SelectItemListener {
 
     private fun setupActionBar() {
         supportActionBar?.run {
+            title = resources.getString(R.string.character_app_fragment_list_title)
             setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.character_app_blue_primary)))
         }
     }
@@ -78,10 +79,8 @@ class CharactersListActivity : BaseActivity(), SelectItemListener {
                 viewModel.isLoading = false
                 setListAdapter(result.data)
             }
-            is Resource.Error -> {
-                showEmptyState(getString(R.string.character_app_general_error))
-            }
-            else -> { Timber.e(getString(R.string.character_app_general_error)) }
+            is Resource.Error -> showEmptyState(getString(R.string.character_app_general_error))
+            else -> Timber.e(getString(R.string.character_app_general_error))
         }
     }
 

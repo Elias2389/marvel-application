@@ -19,6 +19,7 @@ object ServiceModule {
     fun provideCharacterService(retrofit: Retrofit): CharacterService =
         retrofit.create(CharacterService::class.java)
 
+    @Singleton
     @Provides
     fun provideCheckConnection(): CheckConnection = CheckConnectionImpl()
 }

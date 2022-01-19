@@ -43,6 +43,7 @@ class CharacterDetailActivity : BaseActivity() {
 
     private fun setupActionBar() {
         supportActionBar?.run {
+            title = resources.getString(R.string.character_app_fragment_detail_title)
             setDisplayHomeAsUpEnabled(true)
             setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.character_app_blue_primary)))
         }
@@ -66,8 +67,9 @@ class CharacterDetailActivity : BaseActivity() {
     }
 
     private fun getDetail() {
-        characterSelected?.id?.let { id ->
-            viewModel.getCharacterById(id).observe(this, Observer(::handlerResponse))
+        characterSelected?.let {
+            binding.textViewTitle.text = it.name
+            viewModel.getCharacterById(it.id).observe(this, Observer(::handlerResponse))
         } ?: kotlin.run {
             showEmptyState(getString(R.string.character_app_general_error))
         }
@@ -75,19 +77,13 @@ class CharacterDetailActivity : BaseActivity() {
 
     fun handlerResponse(result: Resource<List<ResultsItem>>) {
         when (result) {
-            is Resource.Success -> {
-                result.data.let { response ->
-                    val data = response[0]
-                    setPrincipalImage(data.thumbnail.path)
-                    setListAdapter(data.comics.items)
-                }
+            is Resource.Success -> result.data.let { response ->
+                val data = response[0]
+                setPrincipalImage(data.thumbnail.path)
+                setListAdapter(data.comics.items)
             }
-            is Resource.Error -> {
-                showEmptyState(getString(R.string.character_app_general_error))
-            }
-            else -> {
-                Timber.e(getString(R.string.character_app_general_error))
-            }
+            is Resource.Error -> showEmptyState(getString(R.string.character_app_general_error))
+            else -> Timber.e(getString(R.string.character_app_general_error))
         }
     }
 
