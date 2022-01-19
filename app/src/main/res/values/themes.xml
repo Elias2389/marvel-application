@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="character_app_Theme.MarvelApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="character_app_Theme.MarvelApplication" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/character_app_purple_500</item>
-        <item name="colorPrimaryVariant">@color/character_app_purple_700</item>
+        <item name="colorPrimary">@color/character_app_blue_primary</item>
+        <item name="colorPrimaryVariant">@color/character_app_blue_primary_dark</item>
         <item name="colorOnPrimary">@color/character_app_white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/character_app_teal_200</item>
@@ -12,5 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
 </resources>

@@ -5,4 +5,5 @@
 
     <string name="character_app_fragment_list_title">Characters List</string>
     <string name="character_app_fragment_detail_title">Character Detail</string>
+    <string name="character_app_fragment_comics_title">Comics</string>
 </resources>

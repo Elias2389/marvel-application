@@ -67,7 +67,7 @@ class CharacterListViewModelTest {
 
         viewModel.getAllCharactersByPaging()
 
-        val response = viewModel.getEvents.value
+        val response = viewModel.getItems().value
         assertThat(expectedList, `is`(response))
     }
 
@@ -92,7 +92,7 @@ class CharacterListViewModelTest {
 
         viewModel.getAllCharactersByPaging()
 
-        val errorResponse = viewModel.getEvents.value
+        val errorResponse = viewModel.getItems().value
         assertThat(expectedResponse, `is`(errorResponse))
     }
 
@@ -104,6 +104,6 @@ class CharacterListViewModelTest {
 
     private fun setupViewModel() {
         viewModel = CharacterListViewModel(mockUseCase)
-            .apply { getEvents.observeForever(mockEventObserver) }
+            .apply { getItems().observeForever(mockEventObserver) }
     }
 }

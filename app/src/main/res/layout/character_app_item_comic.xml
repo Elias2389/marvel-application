@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/character_app_margin_item"
+    android:layout_marginStart="16dp"
+    android:id="@+id/item_view_character_detail">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_container_comics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/character_app_margin_item"
+        android:padding="12dp"
+        app:cardCornerRadius="10dp"
+        >
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/character_app_margin_item"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/character_app_black"
+            android:textSize="@dimen/character_app_title_size"
+            app:layout_constraintEnd_toEndOf="@+id/cardView2"
+            app:layout_constraintStart_toStartOf="@+id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+            tools:text="Avengers: The Initiative (2007) #14" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

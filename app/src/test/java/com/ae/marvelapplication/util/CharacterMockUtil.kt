@@ -4,6 +4,7 @@ import com.ae.marvelapplication.dto.dto.CharactersResponse
 import com.ae.marvelapplication.dto.dto.Comics
 import com.ae.marvelapplication.dto.dto.Data
 import com.ae.marvelapplication.dto.dto.Events
+import com.ae.marvelapplication.dto.dto.ItemsItem
 import com.ae.marvelapplication.dto.dto.ResultsItem
 import com.ae.marvelapplication.dto.dto.Series
 import com.ae.marvelapplication.dto.dto.Stories
@@ -29,6 +30,10 @@ val mockCharacter: ResultsItem = ResultsItem(
 val mockCharacterList = listOf(
     mockCharacter.copy(id = 1),
     mockCharacter.copy(id = 2)
+)
+
+val mockCharacterComics = listOf(
+    mockCharacter.copy(id = 1, comics = Comics(items = listOf(ItemsItem(name = "first"))))
 )
 
 val mockCharacterDetail = listOf(

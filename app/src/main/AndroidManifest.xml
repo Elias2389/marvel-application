@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/character_app_Theme.MarvelApplication">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.characterdetail.view.CharacterDetailActivity"
+            android:theme="@style/character_app_Theme.MarvelApplication"
+            android:exported="true"/>
+        <activity
+            android:name=".ui.characterlist.view.CharactersListActivity"
+            android:theme="@style/character_app_Theme.MarvelApplication"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="character_app_Theme.MarvelApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="character_app_Theme.MarvelApplication" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/character_app_blue_primary</item>
         <item name="colorPrimaryVariant">@color/character_app_blue_primary_dark</item>

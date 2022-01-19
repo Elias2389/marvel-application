@@ -12,5 +12,5 @@ interface CharacterListRepository {
      * @param limit Limit the result set
      * @return List of Characters
      */
-    suspend fun getAllCharacters(page: Int, limit: Int): Resource<List<ResultsItem>>
+    suspend fun getAllCharacters(offset: Int, limit: Int): Resource<List<ResultsItem>>
 }
