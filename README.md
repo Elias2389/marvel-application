@@ -74,7 +74,7 @@ MVVM:
 * * *
 
 ### Error m1 processor and Room library
-If you have some error compiling this app in Apple Mac with m1 processor you can try add this in gradle:
+If you have some error compiling this app in Apple Mac with m1 processor you can try add this in build.gradle:
 `allprojects {
        configurations.all {
            resolutionStrategy {
