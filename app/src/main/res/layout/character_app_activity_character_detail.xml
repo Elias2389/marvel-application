@@ -5,7 +5,7 @@
     android:id="@+id/character_detail_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.characterdetail.view.CharacterDetailActivity">
+    tools:context=".presentation.view.CharacterDetailActivity">
 
     <com.ae.marvelapplication.common.components.EmptyState
         android:id="@+id/empty_state_character_detail_view"

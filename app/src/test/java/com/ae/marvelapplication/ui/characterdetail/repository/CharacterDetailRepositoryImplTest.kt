@@ -1,8 +1,10 @@
 package com.ae.marvelapplication.ui.characterdetail.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
-import com.ae.marvelapplication.data.response.Resource
+import com.ae.data.repository.characterdetail.CharacterDetailRepository
+import com.ae.data.repository.characterdetail.CharacterDetailRepositoryImpl
+import com.ae.data.datasource.CharactersRemoteDataSource
+import com.ae.domain.model.Resource
 import com.ae.marvelapplication.util.mockCharacterDetail
 import com.ae.marvelapplication.util.mockCharacterDetailResponse
 import com.ae.marvelapplication.util.mockCharacterId

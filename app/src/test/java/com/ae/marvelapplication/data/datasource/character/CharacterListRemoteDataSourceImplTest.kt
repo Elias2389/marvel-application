@@ -1,8 +1,9 @@
 package com.ae.marvelapplication.data.datasource.character
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelapplication.data.service.CharacterService
-import com.ae.marvelapplication.dto.dto.CharactersResponse
+import com.ae.data.datasource.CharactersRemoteDataSource
+import com.ae.data.service.CharacterService
+import com.ae.requestmanager.model.CharactersResponseServer
 import com.ae.marvelapplication.util.JsonReaderUtil
 import com.ae.marvelapplication.util.JsonToCharacterResponse
 import com.ae.marvelapplication.util.mockCharacterId
@@ -98,14 +99,14 @@ class CharacterListRemoteDataSourceImplTest {
 
             val expectedCharacterResponse =
                 expectResponse.getBody()?.readUtf8()?.JsonToCharacterResponse()
-                    ?: CharactersResponse()
+                    ?: CharactersResponseServer()
 
             coEvery {
                 characterService.getAllCharacters(mockOffset, mockLimit)
             } returns expectedCharacterResponse
 
             val result = mockRemoteDataSource.getAllCharacterListByPageRemote(mockOffset, mockLimit)
-            val emptyCharacterResponse = CharactersResponse()
+            val emptyCharacterResponse = CharactersResponseServer()
             assertThat(result, `is`(expectedCharacterResponse))
             assertThat(result, not(emptyCharacterResponse))
         }
@@ -121,14 +122,14 @@ class CharacterListRemoteDataSourceImplTest {
 
             val expectedCharacterResponse =
                 expectResponse.getBody()?.readUtf8()?.JsonToCharacterResponse()
-                    ?: CharactersResponse()
+                    ?: CharactersResponseServer()
 
             coEvery {
                 characterService.getCharacterById(mockCharacterId)
             } returns expectedCharacterResponse
 
             val result = mockRemoteDataSource.getCharacterById(mockCharacterId)
-            val emptyCharacterResponse = CharactersResponse()
+            val emptyCharacterResponse = CharactersResponseServer()
             assertThat(result, `is`(expectedCharacterResponse))
             assertThat(result, not(emptyCharacterResponse))
         }

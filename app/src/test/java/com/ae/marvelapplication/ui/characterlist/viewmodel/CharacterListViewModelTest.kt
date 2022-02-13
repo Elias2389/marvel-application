@@ -3,8 +3,9 @@ package com.ae.marvelapplication.ui.characterlist.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.ae.marvelapplication.data.response.Resource
-import com.ae.marvelapplication.dto.dto.ResultsItem
-import com.ae.marvelapplication.ui.characterlist.usecase.CharacterListUseCase
+import com.ae.domain.model.ResultsItem
+import com.ae.marvelapplication.presentation.viewmodel.CharacterListViewModel
+import com.ae.marvelapplication.usecase.CharacterListUseCase
 import com.ae.marvelapplication.util.mockCharacterList
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery

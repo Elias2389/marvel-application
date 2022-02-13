@@ -14,7 +14,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ae.marvelapplication.R
 import com.ae.marvelapplication.data.response.Resource
-import com.ae.marvelapplication.ui.characterdetail.view.CharacterDetailActivity
+import com.ae.marvelapplication.presentation.view.CharactersListActivity
+import com.ae.marvelapplication.presentation.view.CharacterDetailActivity
 import com.ae.marvelapplication.util.mockCharacter
 import com.ae.marvelapplication.util.mockCharacterList
 import dagger.hilt.android.testing.HiltAndroidRule

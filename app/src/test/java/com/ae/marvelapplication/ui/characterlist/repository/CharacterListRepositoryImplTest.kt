@@ -1,9 +1,9 @@
 package com.ae.marvelapplication.ui.characterlist.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelapplication.common.connectionchecker.CheckConnection
-import com.ae.marvelapplication.data.datasource.character.CharacterLocalDataSource
-import com.ae.marvelapplication.data.datasource.character.CharactersRemoteDataSource
+import com.ae.data.connectionchecker.CheckConnection
+import com.ae.data.datasource.CharacterLocalDataSource
+import com.ae.data.datasource.CharactersRemoteDataSource
 import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.mapper.toResultsItemEntity
 import com.ae.marvelapplication.util.mockCharacterList

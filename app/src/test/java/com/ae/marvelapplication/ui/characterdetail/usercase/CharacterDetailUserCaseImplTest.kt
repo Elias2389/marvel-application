@@ -2,7 +2,9 @@ package com.ae.marvelapplication.ui.characterdetail.usercase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ae.marvelapplication.data.response.Resource
-import com.ae.marvelapplication.ui.characterdetail.repository.CharacterDetailRepository
+import com.ae.data.repository.characterdetail.CharacterDetailRepository
+import com.ae.marvelapplication.usecase.CharacterDetailUserCase
+import com.ae.marvelapplication.usecase.CharacterDetailUserCaseImpl
 import com.ae.marvelapplication.util.mockCharacterDetail
 import com.ae.marvelapplication.util.mockCharacterId
 import io.mockk.MockKAnnotations

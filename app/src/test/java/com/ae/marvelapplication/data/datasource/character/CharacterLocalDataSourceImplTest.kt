@@ -5,8 +5,9 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
-import com.ae.marvelapplication.data.dao.AppDatabase
-import com.ae.marvelapplication.data.dao.ResultItemDao
+import com.ae.data.datasource.CharacterLocalDataSource
+import com.ae.databasemanager.dao.AppDatabase
+import com.ae.databasemanager.dao.ResultItemDao
 import com.ae.marvelapplication.mapper.toResultsItemEntity
 import com.ae.marvelapplication.util.mockCharacterList
 import com.ae.marvelapplication.util.mockLimit

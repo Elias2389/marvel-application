@@ -3,6 +3,8 @@ package com.ae.marvelapplication.ui.characterlist.usecase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepository
+import com.ae.marvelapplication.usecase.CharacterListUseCase
+import com.ae.marvelapplication.usecase.CharacterListUseCaseImpl
 import com.ae.marvelapplication.util.mockCharacterList
 import com.ae.marvelapplication.util.mockLimit
 import com.ae.marvelapplication.util.mockOffset

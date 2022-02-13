@@ -1,29 +1,36 @@
 package com.ae.marvelapplication.util
 
-import com.ae.marvelapplication.dto.dto.CharactersResponse
-import com.ae.marvelapplication.dto.dto.Comics
-import com.ae.marvelapplication.dto.dto.Data
-import com.ae.marvelapplication.dto.dto.Events
-import com.ae.marvelapplication.dto.dto.ItemsItem
-import com.ae.marvelapplication.dto.dto.ResultsItem
-import com.ae.marvelapplication.dto.dto.Series
-import com.ae.marvelapplication.dto.dto.Stories
-import com.ae.marvelapplication.dto.dto.Thumbnail
-import com.squareup.moshi.Moshi
+import com.ae.requestmanager.model.CharactersResponseServer
+import com.ae.domain.model.Comics
+import com.ae.domain.model.Data
+import com.ae.domain.model.Events
+import com.ae.domain.model.ItemsItem
+import com.ae.domain.model.ResultsItem
+import com.ae.domain.model.Series
+import com.ae.domain.model.Stories
+import com.ae.domain.model.Thumbnail
+import com.ae.requestmanager.model.ComicsServer
+import com.ae.requestmanager.model.DataServer
+import com.ae.requestmanager.model.EventsServer
+import com.ae.requestmanager.model.ItemsItemServer
+import com.ae.requestmanager.model.ResultsItemServer
+import com.ae.requestmanager.model.SeriesServer
+import com.ae.requestmanager.model.StoriesServer
+import com.ae.requestmanager.model.ThumbnailServer
 
 const val mockOffset = 0
 const val mockLimit = 10
 const val mockCharacterId = 1011334
 const val mockName = "Test User"
 
-val mockCharacter: ResultsItem = ResultsItem(
+val mockCharacter: ResultsItemServer = ResultsItemServer(
     id = 12334,
     name = mockName,
-    thumbnail = Thumbnail(),
-    comics = Comics(),
-    series = Series(),
-    events = Events(),
-    stories = Stories(),
+    thumbnail = ThumbnailServer(),
+    comics = ComicsServer(),
+    series = SeriesServer(),
+    events = EventsServer(),
+    stories = StoriesServer() s(),
     urls = emptyList()
 )
 
@@ -33,40 +40,40 @@ val mockCharacterList = listOf(
 )
 
 val mockCharacterComics = listOf(
-    mockCharacter.copy(id = 1, comics = Comics(items = listOf(ItemsItem(name = "first"))))
+    mockCharacter.copy(id = 1, comics = ComicsServer(items = listOf(ItemsItemServer(name = "first"))))
 )
 
 val mockCharacterDetail = listOf(
     mockCharacter.copy(id = 1)
 )
 
-val mockCharacterResponse = CharactersResponse()
+val mockCharacterResponse = CharactersResponseServer()
     .copy(
-        data = Data(
+        data = DataServer(
             offset = mockOffset,
             limit = mockLimit,
             results = mockCharacterList
         )
     )
 
-val mockCharacterDetailResponse = CharactersResponse()
+val mockCharacterDetailResponse = CharactersResponseServer()
     .copy(
-        data = Data(
+        data = DataServer(
             results = mockCharacterDetail
         )
     )
 
-val mockCharacterResponseEmptyList = CharactersResponse()
+val mockCharacterResponseEmptyList = CharactersResponseServer()
     .copy(
-        data = Data(
+        data = DataServer(
             offset = mockOffset,
             limit = mockLimit,
             results = emptyList()
         )
     )
 
-fun String.JsonToCharacterResponse(): CharactersResponse {
+fun String.JsonToCharacterResponse(): CharactersResponseServer {
     val moshi = Moshi.Builder().build()
-    val jsonAdapter = moshi.adapter(CharactersResponse::class.java)
-    return jsonAdapter.fromJson(this) ?: CharactersResponse()
+    val jsonAdapter = moshi.adapter(CharactersResponseServer::class.java)
+    return jsonAdapter.fromJson(this) ?: CharactersResponseServer()
 }
