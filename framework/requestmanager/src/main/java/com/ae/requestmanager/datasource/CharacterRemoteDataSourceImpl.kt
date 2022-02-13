@@ -1,7 +1,8 @@
-package com.ae.marvelapplication.data.datasource.character
+package com.ae.requestmanager.datasource
 
-import com.ae.marvelapplication.data.service.CharacterService
-import com.ae.marvelapplication.dto.dto.CharactersResponse
+import com.ae.data.datasource.CharactersRemoteDataSource
+import com.ae.data.service.CharacterService
+import com.ae.domain.model.CharactersResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 
