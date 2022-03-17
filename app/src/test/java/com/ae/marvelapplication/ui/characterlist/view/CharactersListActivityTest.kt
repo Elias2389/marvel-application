@@ -20,6 +20,7 @@ import com.ae.marvelapplication.util.mockCharacter
 import com.ae.marvelapplication.util.mockCharacterList
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,7 +29,7 @@ import org.robolectric.annotation.Config
 
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
-@Config(instrumentedPackages = ["androidx.loader.content"])
+@Config(application = HiltTestApplication::class, instrumentedPackages = ["androidx.loader.content"])
 class CharactersListActivityTest {
 
     @get:Rule

@@ -105,6 +105,12 @@ tasks.register("detektGenerateBaseline", io.gitlab.arturbosch.detekt.DetektCreat
     exclude(resourceFiles, buildFiles)
 }
 
+tasks.withType(Test.class).configureEach {
+    jacoco {
+        excludes = ["*"]
+    }
+}
+
 kapt {
     correctErrorTypes true
     javacOptions {
@@ -116,6 +122,8 @@ kapt {
 }
 
 dependencies {
+    apply from: "$project.rootDir/jacoco.gradle"
+
     implementation project(":domain")
     implementation project(":data")
     implementation project(":usecase")
