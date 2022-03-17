@@ -5,17 +5,20 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.12760416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.28072916666666664" />
+        <entry key="app/src/main/res/layout/character_app_activity_character_detail.xml" value="0.2764102564102564" />
+        <entry key="app/src/main/res/layout/character_app_activity_characters_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/character_app_activity_main.xml" value="0.28072916666666664" />
         <entry key="app/src/main/res/layout/character_app_empty_state_view.xml" value="0.2764102564102564" />
-        <entry key="app/src/main/res/layout/character_app_fragment_character_detail.xml" value="0.2682291666666667" />
+        <entry key="app/src/main/res/layout/character_app_fragment_character_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/character_app_fragment_characters_list.xml" value="0.28072916666666664" />
+        <entry key="app/src/main/res/layout/character_app_item_comic.xml" value="0.2764102564102564" />
         <entry key="app/src/main/res/layout/character_app_item_list.xml" value="0.28072916666666664" />
         <entry key="app/src/main/res/layout/fragment_character_detail.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.12760416666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

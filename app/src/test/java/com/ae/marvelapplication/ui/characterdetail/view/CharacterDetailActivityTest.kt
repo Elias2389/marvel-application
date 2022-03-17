@@ -8,11 +8,13 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.ae.domain.model.Resource
 import com.ae.marvelapplication.R
-import com.ae.marvelapplication.data.response.Resource
+import com.ae.marvelapplication.presentation.view.CharacterDetailActivity
 import com.ae.marvelapplication.util.mockCharacterComics
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -21,7 +23,7 @@ import org.robolectric.annotation.Config
 
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
-@Config(instrumentedPackages = ["androidx.loader.content"])
+@Config(application = HiltTestApplication::class, instrumentedPackages = ["androidx.loader.content"])
 class CharacterDetailActivityTest {
 
     @get:Rule

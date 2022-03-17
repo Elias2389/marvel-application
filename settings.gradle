@@ -9,3 +9,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MarvelApplication"
 include ':app'
+include ':domain'
+include ':data'
+include ':usecase'
+include ':framework:databasemanager'
+include ':framework:requestmanager'

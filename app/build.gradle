@@ -63,6 +63,7 @@ detekt {
     buildUponDefaultConfig = true
 }
 
+
 def projectSource = file(projectDir)
 def configFile = files("$rootDir/config/detekt/detekt.yml")
 def baselineFile = file("$rootDir/config/detekt/baseline.xml")
@@ -104,6 +105,12 @@ tasks.register("detektGenerateBaseline", io.gitlab.arturbosch.detekt.DetektCreat
     exclude(resourceFiles, buildFiles)
 }
 
+tasks.withType(Test.class).configureEach {
+    jacoco {
+        excludes = ["*"]
+    }
+}
+
 kapt {
     correctErrorTypes true
     javacOptions {
@@ -115,6 +122,12 @@ kapt {
 }
 
 dependencies {
+
+    implementation project(":domain")
+    implementation project(":data")
+    implementation project(":usecase")
+    implementation project(":framework:databasemanager")
+    implementation project(":framework:requestmanager")
 
     implementation "androidx.core:core-ktx:$coreKtxversion"
     implementation "androidx.appcompat:appcompat:$app_compact_version"
@@ -134,35 +147,14 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$ktx_life_cycle_version"
 
-    implementation "androidx.test:runner:$test_runner_version"
-
     // Dagger
     implementation "com.google.dagger:hilt-android:$dagger_version"
     kapt "com.google.dagger:hilt-compiler:$dagger_version"
-
-    // retrofit
-    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofi_version"
-    implementation "com.squareup.retrofit2:retrofit:$retrofi_version"
-    implementation "com.squareup.okhttp3:okhttp:$ok_http_version"
-    implementation "com.squareup.okio:okio:$okio_version"
-
-    // Moshi
-
-    implementation("com.squareup.moshi:moshi:$moshi_version")
-    implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
 
     detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
 
     //Coil
     implementation "io.coil-kt:coil:$coil_version"
-
-    // Room
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
 
     // Timber logging
     implementation "com.jakewharton.timber:timber:$timber_version"
@@ -195,8 +187,6 @@ dependencies {
     // Mock Web Server
     testImplementation "com.squareup.okhttp3:mockwebserver:$mock_web_server"
 
-    // Room
-    androidTestImplementation "androidx.room:room-testing:$room_version"
 
     // Roboelectric
     testImplementation "org.robolectric:robolectric:$roboelectrict_version"

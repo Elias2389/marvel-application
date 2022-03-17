@@ -1,15 +1,14 @@
 package com.ae.marvelapplication.util
 
-import com.ae.marvelapplication.dto.dto.CharactersResponse
-import com.ae.marvelapplication.dto.dto.Comics
-import com.ae.marvelapplication.dto.dto.Data
-import com.ae.marvelapplication.dto.dto.Events
-import com.ae.marvelapplication.dto.dto.ItemsItem
-import com.ae.marvelapplication.dto.dto.ResultsItem
-import com.ae.marvelapplication.dto.dto.Series
-import com.ae.marvelapplication.dto.dto.Stories
-import com.ae.marvelapplication.dto.dto.Thumbnail
-import com.squareup.moshi.Moshi
+import com.ae.domain.model.CharactersResponse
+import com.ae.domain.model.Comics
+import com.ae.domain.model.Data
+import com.ae.domain.model.Events
+import com.ae.domain.model.ItemsItem
+import com.ae.domain.model.ResultsItem
+import com.ae.domain.model.Series
+import com.ae.domain.model.Stories
+import com.ae.domain.model.Thumbnail
 
 const val mockOffset = 0
 const val mockLimit = 10
@@ -64,9 +63,3 @@ val mockCharacterResponseEmptyList = CharactersResponse()
             results = emptyList()
         )
     )
-
-fun String.JsonToCharacterResponse(): CharactersResponse {
-    val moshi = Moshi.Builder().build()
-    val jsonAdapter = moshi.adapter(CharactersResponse::class.java)
-    return jsonAdapter.fromJson(this) ?: CharactersResponse()
-}

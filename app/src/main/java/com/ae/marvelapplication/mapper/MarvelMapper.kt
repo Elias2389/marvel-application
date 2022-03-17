@@ -1,62 +1,26 @@
 package com.ae.marvelapplication.mapper
 
-import com.ae.marvelapplication.dto.dto.ResultsItem
-import com.ae.marvelapplication.dto.dto.Thumbnail
-import com.ae.marvelapplication.entity.ResultsItemEntity
-import com.ae.marvelapplication.entity.ThumbnailEntity
+import com.ae.domain.model.ResultsItem
+import com.ae.domain.model.Thumbnail
+import com.ae.marvelapplication.parcelable.ResultsItemParcelable
+import com.ae.marvelapplication.parcelable.ThumbnailParcelable
 
 /**
  * Mapper to convert from
- * ResultItem to ResultItemEntity
+ * ResultItem to Parcelable
  */
-fun ResultsItem.toEntity() = ResultsItemEntity(
+fun ResultsItem.toParcelable() = ResultsItemParcelable(
     id = id,
     name = name,
     description = description,
-    thumbnail = thumbnail.toThumbnailEntity()
-)
-
-/**
- * Mapper to convert from
- * ResultItemEntity to ResultItem
- */
-fun ResultsItemEntity.toResultsItem() = ResultsItem(
-    id = id,
-    name = name,
-    description = description,
-    thumbnail = thumbnail.toThumbnail()
+    thumbnail = thumbnail.toThumbnailParcelable()
 )
 
 /**
  * Mapper to convert from
  * thumbnailEntity to thumbnail
  */
-fun ThumbnailEntity.toThumbnail() = Thumbnail(
+fun Thumbnail.toThumbnailParcelable() = ThumbnailParcelable(
     path = path,
     extension = extension
 )
-
-/**
- * Mapper to convert from
- * Thumbnail to ThumbnailEntity
- */
-fun Thumbnail.toThumbnailEntity() = ThumbnailEntity(
-    path = path,
-    extension = extension
-)
-
-/**
- * Mapper to convert from
- * list of ResultItemEntity to list of ResultItem
- */
-fun List<ResultsItemEntity>.toResultsItem(): List<ResultsItem> {
-    return this.map { it.toResultsItem() }
-}
-
-/**
- * Mapper to convert from
- * list of ResultsItem to list of ResultsItemEntity
- */
-fun List<ResultsItem>.toResultsItemEntity(): List<ResultsItemEntity> {
-    return this.map { it.toEntity() }
-}
