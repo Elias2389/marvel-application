@@ -15,6 +15,7 @@ import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
@@ -46,8 +47,8 @@ class CharacterDetailViewModelTest {
 
     @Before
     fun setUp() {
-        MockKAnnotations.init(this)
         Dispatchers.setMain(testCoroutineDispatcher)
+        MockKAnnotations.init(this)
         viewModel = CharacterDetailViewModel(mockUseCase)
     }
 
@@ -58,7 +59,7 @@ class CharacterDetailViewModelTest {
         coEvery { mockUseCase.invoke(mockCharacterId) } returns charactersExpect
 
         viewModel.getCharacterById(mockCharacterId).observeForever(mockObserver)
-        viewModel.getCharacterById(mockCharacterId).getOrAwaitValue()
+        viewModel.getCharacterById(mockCharacterId)
 
         coVerify { mockObserver.onChanged(eq(charactersExpect)) }
     }
@@ -70,12 +71,12 @@ class CharacterDetailViewModelTest {
         coEvery { mockUseCase.invoke(mockCharacterId) } returns charactersExpect
 
         viewModel.getCharacterById(mockCharacterId).observeForever(mockObserver)
-        val result = viewModel.getCharacterById(mockCharacterId).getOrAwaitValue() as Resource.Success
+        val result = viewModel.getCharacterById(mockCharacterId).getOrAwaitValue()
 
         assertThat(charactersExpect, `is`(result))
     }
 
-    @Test
+    @Test(expected = Exception::class)
     fun `Get character detail should be fail`() = runBlockingTest {
         val expectedException = Exception("")
         val expectedResponse = Resource.Error(expectedException)
@@ -83,12 +84,12 @@ class CharacterDetailViewModelTest {
         coEvery { mockUseCase.invoke(mockCharacterId) } throws expectedException
 
         viewModel.getCharacterById(mockCharacterId).observeForever(mockObserver)
-        viewModel.getCharacterById(mockCharacterId).getOrAwaitValue()
+        viewModel.getCharacterById(mockCharacterId) as Resource.Error
 
         coVerify { mockObserver.onChanged(eq(expectedResponse)) }
     }
 
-    @Test
+    @Test(expected = Exception::class)
     fun `Get character detail should be fail and return error`() = runBlockingTest {
         val expectedException = Exception("")
         val expectedResponse = Resource.Error(expectedException)
@@ -96,7 +97,7 @@ class CharacterDetailViewModelTest {
         coEvery { mockUseCase.invoke(mockCharacterId) } throws expectedException
 
         viewModel.getCharacterById(mockCharacterId).observeForever(mockObserver)
-        val result = viewModel.getCharacterById(mockCharacterId).getOrAwaitValue()
+        val result = viewModel.getCharacterById(mockCharacterId) as Resource.Error
 
         assertThat(expectedResponse, `is`(result))
     }
