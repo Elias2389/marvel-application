@@ -17,8 +17,16 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'temurin'
+          distribution: 'adopt'
           cache: gradle
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches/modules-*
+            ~/.gradle/caches/jars-*
+            ~/.gradle/caches/build-cache-*
+          key: gradle-${{ hashFiles('checksum.txt') }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -26,24 +34,17 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleDebug testDebugUnitTest
 
-      - name: Unit Test
-        run: ./gradlew testDebugUnitTest jacocoTestReport
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest
 
-      - name: generate coverage report
+      - name: Upload html test report
         uses: actions/upload-artifact@v2
         with:
-          name: report
-          path: app/build/jacoco/
+          name: index.html
+          path: app/build/reports/tests/testDebugUnitTest/index.html
 
-      - name: Download Test Reports Folder
-        uses: actions/download-artifact@v2
+      - name: Upload test report directory
+        uses: actions/upload-artifact@v2
         with:
-          name: report
-          path: app/build/jacoco/
-
-      - name: Upload Test Report
-        run:  bash <(curl -s https://codecov.io/bash) -f "app/build/jacoco/jacoco.xml"
-
-      - name: Android Test Report
-        uses: asadmansr/android-test-report-action@v1.2.0
-        if: ${{ always() }} # IMPORTANT: run Android Test Report regardless
+          name: testDebugStuff
+          path: app/build/reports/tests/testDebugUnitTest/
