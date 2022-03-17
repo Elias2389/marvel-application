@@ -2,13 +2,13 @@ package com.ae.marvelapplication.ui.characterdetail.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.ae.marvelapplication.data.response.Resource
+import com.ae.domain.model.Resource
 import com.ae.domain.model.ResultsItem
 import com.ae.marvelapplication.presentation.viewmodel.CharacterDetailViewModel
-import com.ae.marvelapplication.usecase.CharacterDetailUserCase
 import com.ae.marvelapplication.util.getOrAwaitValue
 import com.ae.marvelapplication.util.mockCharacterDetail
 import com.ae.marvelapplication.util.mockCharacterId
+import com.ae.usecase.CharacterDetailUserCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify

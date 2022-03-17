@@ -8,8 +8,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.ae.domain.model.Resource
 import com.ae.marvelapplication.R
-import com.ae.marvelapplication.data.response.Resource
 import com.ae.marvelapplication.presentation.view.CharacterDetailActivity
 import com.ae.marvelapplication.util.mockCharacterComics
 import dagger.hilt.android.testing.HiltAndroidRule

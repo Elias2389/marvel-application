@@ -63,6 +63,7 @@ detekt {
     buildUponDefaultConfig = true
 }
 
+
 def projectSource = file(projectDir)
 def configFile = files("$rootDir/config/detekt/detekt.yml")
 def baselineFile = file("$rootDir/config/detekt/baseline.xml")

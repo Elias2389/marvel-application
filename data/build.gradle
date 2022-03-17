@@ -45,6 +45,7 @@ android {
 }
 
 dependencies {
+    apply from: "$project.rootDir/jacoco.gradle"
     implementation project(":domain")
 
     // Dagger

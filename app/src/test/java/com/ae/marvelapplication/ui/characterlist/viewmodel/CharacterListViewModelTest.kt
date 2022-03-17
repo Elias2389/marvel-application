@@ -2,11 +2,11 @@ package com.ae.marvelapplication.ui.characterlist.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.ae.marvelapplication.data.response.Resource
+import com.ae.domain.model.Resource
 import com.ae.domain.model.ResultsItem
 import com.ae.marvelapplication.presentation.viewmodel.CharacterListViewModel
-import com.ae.marvelapplication.usecase.CharacterListUseCase
 import com.ae.marvelapplication.util.mockCharacterList
+import com.ae.usecase.CharacterListUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
