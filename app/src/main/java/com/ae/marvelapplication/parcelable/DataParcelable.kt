@@ -10,4 +10,4 @@ data class DataParcelable(
     val limit: Int = 0,
     val count: Int = 0,
     val results: List<ResultsItemParcelable> = emptyList()
-): Parcelable
+) : Parcelable

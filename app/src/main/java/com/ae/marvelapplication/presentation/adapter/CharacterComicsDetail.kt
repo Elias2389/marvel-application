@@ -1,9 +1,9 @@
 package com.ae.marvelapplication.presentation.adapter
 
 import android.view.View
+import com.ae.domain.model.ItemsItem
 import com.ae.marvelapplication.R
 import com.ae.marvelapplication.databinding.CharacterAppItemComicBinding
-import com.ae.domain.model.ItemsItem
 import com.xwray.groupie.viewbinding.BindableItem
 
 class CharacterComicsDetail(

@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ae.domain.model.Resource
+import com.ae.domain.model.ResultsItem
 import com.ae.marvelapplication.R
 import com.ae.marvelapplication.common.base.BaseActivity
 import com.ae.marvelapplication.common.listener.SelectItemListener
 import com.ae.marvelapplication.databinding.CharacterAppActivityCharactersListBinding
-import com.ae.domain.model.ResultsItem
 import com.ae.marvelapplication.mapper.toParcelable
 import com.ae.marvelapplication.presentation.adapter.CharacterItem
 import com.ae.marvelapplication.presentation.viewmodel.CharacterListViewModel

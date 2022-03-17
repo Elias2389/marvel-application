@@ -7,12 +7,12 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.ae.marvelapplication.R
-import com.ae.marvelapplication.common.base.BaseActivity
-import com.ae.marvelapplication.databinding.CharacterAppActivityCharacterDetailBinding
 import com.ae.domain.model.ItemsItem
 import com.ae.domain.model.Resource
 import com.ae.domain.model.ResultsItem
+import com.ae.marvelapplication.R
+import com.ae.marvelapplication.common.base.BaseActivity
+import com.ae.marvelapplication.databinding.CharacterAppActivityCharacterDetailBinding
 import com.ae.marvelapplication.parcelable.ResultsItemParcelable
 import com.ae.marvelapplication.presentation.adapter.CharacterComicsDetail
 import com.ae.marvelapplication.presentation.viewmodel.CharacterDetailViewModel

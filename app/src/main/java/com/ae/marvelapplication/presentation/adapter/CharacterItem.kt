@@ -2,10 +2,10 @@ package com.ae.marvelapplication.presentation.adapter
 
 import android.view.View
 import coil.load
+import com.ae.domain.model.ResultsItem
 import com.ae.marvelapplication.R
 import com.ae.marvelapplication.common.listener.SelectItemListener
 import com.ae.marvelapplication.databinding.CharacterAppItemListBinding
-import com.ae.domain.model.ResultsItem
 import com.xwray.groupie.viewbinding.BindableItem
 
 class CharacterItem(
