@@ -1,13 +1,12 @@
-package com.ae.marvelapplication.ui.characterlist.usecase
+package com.ae.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.marvelapplication.data.response.Resource
-import com.ae.marvelapplication.ui.characterlist.repository.CharacterListRepository
-import com.ae.marvelapplication.usecase.CharacterListUseCase
-import com.ae.marvelapplication.usecase.CharacterListUseCaseImpl
-import com.ae.marvelapplication.util.mockCharacterList
-import com.ae.marvelapplication.util.mockLimit
-import com.ae.marvelapplication.util.mockOffset
+import com.ae.data.repository.characterlist.CharacterListRepository
+import com.ae.util.mockCharacterList
+import com.ae.util.mockOffset
+import com.ae.domain.model.Resource
+import com.ae.util.mockLimit
+
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -17,9 +16,8 @@ import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.not
+import org.hamcrest.MatcherAssert
+import org.hamcrest.Matchers
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -53,8 +51,8 @@ class CharacterListUseCaseImplTest {
         coEvery { mockRepository.getAllCharacters(mockOffset, mockLimit) } returns expectedList
 
         val result = useCase.invoke(mockOffset, mockLimit) as Resource.Success
-        assertThat(result, `is`(expectedList))
-        assertThat(result.data, not(emptyList()))
+        MatcherAssert.assertThat(result, Matchers.`is`(expectedList))
+        MatcherAssert.assertThat(result.data, Matchers.not(emptyList()))
     }
 
     @Test
@@ -64,7 +62,7 @@ class CharacterListUseCaseImplTest {
         coEvery { mockRepository.getAllCharacters(mockOffset, mockLimit) } returns expectedResponse
 
         val result = useCase.invoke(mockOffset, mockLimit) as Resource.Error
-        assertThat(result, `is`(expectedResponse))
+        MatcherAssert.assertThat(result, Matchers.`is`(expectedResponse))
     }
 
     @After

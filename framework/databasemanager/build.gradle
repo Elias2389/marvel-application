@@ -19,6 +19,12 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -56,4 +62,34 @@ dependencies {
     // Coroutines
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
 
+    // Junit
+    testImplementation "junit:junit:$junit_version"
+
+
+    testImplementation "androidx.arch.core:core-testing:$arch_core_testing"
+
+    androidTestImplementation "androidx.test:core:$test_core_version"
+
+    // For local unit tests
+    testImplementation "com.google.dagger:hilt-android-testing:$dagger_version"
+    kaptTest "com.google.dagger:hilt-compiler:$dagger_version"
+
+    // Coroutines
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+
+    // Roboelectric
+    testImplementation "org.robolectric:robolectric:$roboelectrict_version"
+
+    // Mockk
+    testImplementation "io.mockk:mockk:$mockk_version"
+
+    testImplementation "androidx.test:core-ktx:$test_core_version"
+    testImplementation "androidx.test.ext:junit-ktx:$junit_ktx_version"
+    testImplementation "androidx.test:rules:$test_rules_version"
+
+    // Rules
+    androidTestImplementation "androidx.test:rules:$test_rules_version"
+    androidTestImplementation "androidx.test:core-ktx:$test_core_version"
+    androidTestImplementation "androidx.test.ext:junit:$junit_test_impl_version"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$junit_ktx_version"
 }

@@ -61,4 +61,19 @@ dependencies {
     // Dagger
     implementation "com.google.dagger:hilt-android:$dagger_version"
     kapt "com.google.dagger:hilt-compiler:$dagger_version"
+
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$junit_test_impl_version"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$junit_ktx_version"
+
+    testImplementation "androidx.arch.core:core-testing:$arch_core_testing"
+
+    // Coroutines
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+
+    // Mockk
+    testImplementation "io.mockk:mockk:$mockk_version"
+
+    // Mock Web Server
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mock_web_server"
 }

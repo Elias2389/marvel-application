@@ -1,18 +1,17 @@
-package com.ae.marvelapplication.data.datasource.character
+package com.ae.databasemanager.datasource
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.MediumTest
+import androidx.test.filters.SmallTest
 import com.ae.data.datasource.CharacterLocalDataSource
 import com.ae.databasemanager.dao.AppDatabase
 import com.ae.databasemanager.dao.ResultItemDao
-import com.ae.marvelapplication.mapper.toResultsItemEntity
-import com.ae.marvelapplication.util.mockCharacterList
-import com.ae.marvelapplication.util.mockLimit
-import com.ae.marvelapplication.util.mockName
-import com.ae.marvelapplication.util.mockOffset
+import com.ae.databasemanager.mapper.toResultsItem
+import com.ae.databasemanager.util.mockLimit
+import com.ae.databasemanager.util.mockName
+import com.ae.databasemanager.util.mockOffset
+import com.ae.databasemanager.util.mockResultsItemEntityList
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -23,20 +22,21 @@ import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.not
-import org.hamcrest.Matchers.notNullValue
+import org.hamcrest.CoreMatchers
+import org.hamcrest.MatcherAssert
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.ae.databasemanager.mapper.toResultsItemEntity
 
-@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
-@MediumTest
+@ExperimentalCoroutinesApi
+@SmallTest
 class CharacterLocalDataSourceImplTest {
 
     @get:Rule
@@ -47,6 +47,7 @@ class CharacterLocalDataSourceImplTest {
 
     @MockK(relaxed = true)
     private lateinit var characterDao: ResultItemDao
+
 
     private lateinit var mockCharacterLocalDataSource: CharacterLocalDataSource
     private lateinit var characterLocalDataSource: CharacterLocalDataSource
@@ -62,34 +63,34 @@ class CharacterLocalDataSourceImplTest {
 
     @Test
     fun `Get characters list from DB should be success`() = runBlockingTest {
-        val expectList = mockCharacterList.toResultsItemEntity()
+        val expectList = mockResultsItemEntityList.toResultsItem()
 
         coEvery {
             characterDao.getAllCharacters(
                 mockOffset,
                 mockLimit
             )
-        } returns expectList
+        } returns expectList.toResultsItemEntity()
 
         val result = mockCharacterLocalDataSource.getAllCharacterListLocal(mockOffset, mockLimit)
-        assertThat(expectList, `is`(result))
-        assertThat(expectList, not(emptyList()))
+        MatcherAssert.assertThat(expectList, CoreMatchers.`is`(result))
+        MatcherAssert.assertThat(expectList, CoreMatchers.not(emptyList()))
     }
 
     @Test
     fun `Save character in memory DB should be success`() = runBlocking {
-        val expectList = mockCharacterList.toResultsItemEntity()
+        val expectList = mockResultsItemEntityList.toResultsItem()
         characterLocalDataSource.saveCharacterLocal(expectList[1])
 
         val result = characterLocalDataSource.getCharacterListLocalById(1)
 
-        assertThat(result, `is`(notNullValue()))
-        assertThat(result.name, `is`(mockName))
+        MatcherAssert.assertThat(result, CoreMatchers.`is`(CoreMatchers.notNullValue()))
+        MatcherAssert.assertThat(result.name, CoreMatchers.`is`(mockName))
     }
 
     @Test
     fun `Save characters list in memory DB should be success`() = runBlocking {
-        val expectList = mockCharacterList.toResultsItemEntity()
+        val expectList = mockResultsItemEntityList.toResultsItem()
 
         expectList.map { item ->
             characterLocalDataSource.saveCharacterLocal(item)
@@ -97,7 +98,7 @@ class CharacterLocalDataSourceImplTest {
 
         val result = characterLocalDataSource
             .getAllCharacterListLocal(mockOffset, mockLimit)
-        assertThat(result.isEmpty(), `is`(false))
+        MatcherAssert.assertThat(result.isEmpty(), CoreMatchers.`is`(false))
     }
 
     @After

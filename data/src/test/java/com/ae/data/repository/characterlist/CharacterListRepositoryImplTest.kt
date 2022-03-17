@@ -1,14 +1,13 @@
-package com.ae.marvelapplication.ui.characterlist.repository
+package com.ae.data.repository.characterlist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ae.data.connectionchecker.CheckConnection
 import com.ae.data.datasource.CharacterLocalDataSource
 import com.ae.data.datasource.CharactersRemoteDataSource
-import com.ae.marvelapplication.data.response.Resource
-import com.ae.marvelapplication.mapper.toResultsItemEntity
-import com.ae.marvelapplication.util.mockCharacterList
-import com.ae.marvelapplication.util.mockLimit
-import com.ae.marvelapplication.util.mockOffset
+import com.ae.data.util.mockCharacterList
+import com.ae.data.util.mockLimit
+import com.ae.data.util.mockOffset
+import com.ae.domain.model.Resource
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -18,10 +17,10 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.not
+import org.hamcrest.MatcherAssert
+import org.hamcrest.Matchers
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -57,7 +56,7 @@ class CharacterListRepositoryImplTest {
     @Test
     fun `Get characters list from RemoteDataSource should be success and return character list`() =
         runBlocking {
-            val expectedListEntity = mockCharacterList.toResultsItemEntity()
+            val expectedListEntity = mockCharacterList
             val expectedList = mockCharacterList
 
             coEvery {
@@ -65,8 +64,8 @@ class CharacterListRepositoryImplTest {
             } returns expectedListEntity
 
             val result = mockRepository.getAllCharacters(mockOffset, mockLimit) as Resource.Success
-            assertThat(result.data, `is`(expectedList))
-            assertThat(result.data, not(emptyList()))
+            MatcherAssert.assertThat(result.data, Matchers.`is`(expectedList))
+            MatcherAssert.assertThat(result.data, Matchers.not(emptyList()))
         }
 
     @Test
@@ -79,7 +78,7 @@ class CharacterListRepositoryImplTest {
             } throws expectedException
 
             val result = mockRepository.getAllCharacters(mockOffset, mockLimit) as Resource.Error
-            assertThat(result.exception, `is`(expectedException))
+            MatcherAssert.assertThat(result.exception, Matchers.`is`(expectedException))
         }
 
     @After

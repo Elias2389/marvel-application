@@ -1,5 +1,6 @@
-package com.ae.marvelapplication.util
+package com.ae.util
 
+import com.ae.domain.model.CharactersResponse
 import com.ae.requestmanager.model.CharactersResponseServer
 import com.ae.domain.model.Comics
 import com.ae.domain.model.Data
@@ -17,6 +18,7 @@ import com.ae.requestmanager.model.ResultsItemServer
 import com.ae.requestmanager.model.SeriesServer
 import com.ae.requestmanager.model.StoriesServer
 import com.ae.requestmanager.model.ThumbnailServer
+import com.squareup.moshi.Moshi
 
 const val mockOffset = 0
 const val mockLimit = 10
@@ -71,3 +73,9 @@ val mockCharacterResponseEmptyList = CharactersResponseServer()
             results = emptyList()
         )
     )
+
+fun String.JsonToCharacterResponse(): CharactersResponse {
+    val moshi = Moshi.Builder().build()
+    val jsonAdapter = moshi.adapter(CharactersResponse::class.java)
+    return jsonAdapter.fromJson(this) ?: CharactersResponse()
+}

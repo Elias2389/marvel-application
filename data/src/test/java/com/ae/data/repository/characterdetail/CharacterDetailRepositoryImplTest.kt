@@ -1,13 +1,11 @@
-package com.ae.marvelapplication.ui.characterdetail.repository
+package com.ae.data.repository.characterdetail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ae.data.repository.characterdetail.CharacterDetailRepository
-import com.ae.data.repository.characterdetail.CharacterDetailRepositoryImpl
 import com.ae.data.datasource.CharactersRemoteDataSource
+import com.ae.data.util.mockCharacterDetail
+import com.ae.data.util.mockCharacterDetailResponse
+import com.ae.data.util.mockCharacterId
 import com.ae.domain.model.Resource
-import com.ae.marvelapplication.util.mockCharacterDetail
-import com.ae.marvelapplication.util.mockCharacterDetailResponse
-import com.ae.marvelapplication.util.mockCharacterId
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -17,14 +15,14 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.not
+import org.hamcrest.MatcherAssert
+import org.hamcrest.Matchers
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
+
 
 @ExperimentalCoroutinesApi
 class CharacterDetailRepositoryImplTest {
@@ -58,11 +56,11 @@ class CharacterDetailRepositoryImplTest {
             } returns expectedCharacterResponse
 
             val result = mockRepository.getCharacterById(mockCharacterId) as Resource.Success
-            assertThat(result.data, `is`(expectedList))
-            assertThat(result.data, not(emptyList()))
+            MatcherAssert.assertThat(result.data, Matchers.`is`(expectedList))
+            MatcherAssert.assertThat(result.data, Matchers.not(emptyList()))
         }
 
-    @Test
+    @Test(expected = Exception::class)
     fun `Get characters detail from RemoteDataSource should be fail and return error`() =
         runBlocking {
             val expectedException = Exception("")
@@ -72,7 +70,7 @@ class CharacterDetailRepositoryImplTest {
             } throws expectedException
 
             val result = mockRepository.getCharacterById(mockCharacterId) as Resource.Error
-            assertThat(result.exception, `is`(expectedException))
+            MatcherAssert.assertThat(result.exception, Matchers.`is`(expectedException))
         }
 
     @After

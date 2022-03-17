@@ -139,8 +139,6 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$ktx_life_cycle_version"
 
-    implementation "androidx.test:runner:$test_runner_version"
-
     // Dagger
     implementation "com.google.dagger:hilt-android:$dagger_version"
     kapt "com.google.dagger:hilt-compiler:$dagger_version"

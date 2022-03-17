@@ -1,14 +1,14 @@
-package com.ae.marvelapplication.data.datasource.character
+package com.ae.requestmanager.datasource
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ae.data.datasource.CharactersRemoteDataSource
 import com.ae.data.service.CharacterService
-import com.ae.requestmanager.model.CharactersResponseServer
-import com.ae.marvelapplication.util.JsonReaderUtil
-import com.ae.marvelapplication.util.JsonToCharacterResponse
-import com.ae.marvelapplication.util.mockCharacterId
-import com.ae.marvelapplication.util.mockLimit
-import com.ae.marvelapplication.util.mockOffset
+import com.ae.domain.model.CharactersResponse
+import com.ae.util.JsonReaderUtil
+import com.ae.util.JsonToCharacterResponse
+import com.ae.util.mockCharacterId
+import com.ae.util.mockLimit
+import com.ae.util.mockOffset
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -21,18 +21,20 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.containsString
-import org.hamcrest.Matchers.not
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.containsString
+import org.hamcrest.CoreMatchers.not
+import org.hamcrest.MatcherAssert
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 
+
 @ExperimentalCoroutinesApi
-class CharacterListRemoteDataSourceImplTest {
+class CharacterRemoteDataSourceImplTest {
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
@@ -69,9 +71,9 @@ class CharacterListRemoteDataSourceImplTest {
         mockWebServer.enqueue(expectResponse)
 
         val result = expectResponse.getBody()?.readUtf8()
-        assertThat(result, not(""))
-        assertThat(result, containsString("\"results\""))
-        assertThat(result, containsString("\"description\""))
+        MatcherAssert.assertThat(result, not(""))
+        MatcherAssert.assertThat(result, containsString("\"results\""))
+        MatcherAssert.assertThat(result, containsString("\"description\""))
     }
 
     @Test
@@ -83,9 +85,9 @@ class CharacterListRemoteDataSourceImplTest {
         mockWebServer.enqueue(expectResponse)
 
         val result = expectResponse.getBody()?.readUtf8()
-        assertThat(result, not(""))
-        assertThat(result, containsString("\"id\""))
-        assertThat(result, containsString("\"description\""))
+        MatcherAssert.assertThat(result, not(""))
+        MatcherAssert.assertThat(result, containsString("\"id\""))
+        MatcherAssert.assertThat(result, containsString("\"description\""))
     }
 
     @Test
@@ -97,18 +99,18 @@ class CharacterListRemoteDataSourceImplTest {
 
             mockWebServer.enqueue(expectResponse)
 
-            val expectedCharacterResponse =
+            val expectedCharacterResponse: CharactersResponse =
                 expectResponse.getBody()?.readUtf8()?.JsonToCharacterResponse()
-                    ?: CharactersResponseServer()
+                    ?: CharactersResponse()
 
             coEvery {
                 characterService.getAllCharacters(mockOffset, mockLimit)
             } returns expectedCharacterResponse
 
             val result = mockRemoteDataSource.getAllCharacterListByPageRemote(mockOffset, mockLimit)
-            val emptyCharacterResponse = CharactersResponseServer()
-            assertThat(result, `is`(expectedCharacterResponse))
-            assertThat(result, not(emptyCharacterResponse))
+            val emptyCharacterResponse = CharactersResponse()
+            MatcherAssert.assertThat(result, `is`(expectedCharacterResponse))
+            MatcherAssert.assertThat(result, not(emptyCharacterResponse))
         }
 
     @Test
@@ -122,16 +124,16 @@ class CharacterListRemoteDataSourceImplTest {
 
             val expectedCharacterResponse =
                 expectResponse.getBody()?.readUtf8()?.JsonToCharacterResponse()
-                    ?: CharactersResponseServer()
+                    ?: CharactersResponse()
 
             coEvery {
                 characterService.getCharacterById(mockCharacterId)
             } returns expectedCharacterResponse
 
             val result = mockRemoteDataSource.getCharacterById(mockCharacterId)
-            val emptyCharacterResponse = CharactersResponseServer()
-            assertThat(result, `is`(expectedCharacterResponse))
-            assertThat(result, not(emptyCharacterResponse))
+            val emptyCharacterResponse = CharactersResponse()
+            MatcherAssert.assertThat(result, `is`(expectedCharacterResponse))
+            MatcherAssert.assertThat(result, not(emptyCharacterResponse))
         }
 
     @Test
@@ -143,9 +145,9 @@ class CharacterListRemoteDataSourceImplTest {
         mockWebServer.enqueue(expectResponse)
 
         val result = expectResponse.getBody()?.readUtf8()
-        assertThat(result, not(""))
-        assertThat(result, containsString("\"code\""))
-        assertThat(result, containsString("\"status\""))
+        MatcherAssert.assertThat(result, not(""))
+        MatcherAssert.assertThat(result, containsString("\"code\""))
+        MatcherAssert.assertThat(result, containsString("\"status\""))
     }
 
     @Test
@@ -157,10 +159,10 @@ class CharacterListRemoteDataSourceImplTest {
         mockWebServer.enqueue(expectResponse)
 
         val result = expectResponse.getBody()?.readUtf8()
-        assertThat(result, not(""))
-        assertThat(result, containsString("\"code\""))
-        assertThat(result, containsString("\"status\""))
-        assertThat(result, containsString("We couldn't find that character"))
+        MatcherAssert.assertThat(result, not(""))
+        MatcherAssert.assertThat(result, containsString("\"code\""))
+        MatcherAssert.assertThat(result, containsString("\"status\""))
+        MatcherAssert.assertThat(result, containsString("We couldn't find that character"))
     }
 
     @After
